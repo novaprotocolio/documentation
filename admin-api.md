@@ -39,7 +39,7 @@ markets := models.MarketDao.FindPublishedMarkets()
       "id": "HOT-DAI",
       "baseTokenSymbol": "HOT",
       "BaseTokenName": "HOT",
-      "baseTokenAddress": "0x4c4fa7e8ea4cfcfc93deae2c0cff142a1dd3a218",
+      "baseTokenAddress": "0x224E34A640FC4108FABDb201eD85D909059105fA",
       "baseTokenDecimals": 18,
       "quoteTokenSymbol": "DAI",
       "QuoteTokenName": "DAI",
@@ -132,7 +132,7 @@ Create a market, a market is a token - token pair. default isPublished value is 
 ```js
 {
 	"id": "HOT-WETH",                                                  // required
-	"baseTokenAddress": "0x4c4fa7e8ea4cfcfc93deae2c0cff142a1dd3a218",  // required
+	"baseTokenAddress": "0x224E34A640FC4108FABDb201eD85D909059105fA",  // required
 	"quoteTokenAddress": "0xbc3524faa62d0763818636d5e400f112279d6cc0", // required
 	"minOrderSize": "0.001",                                           // optional default 0.01
 	"pricePrecision": 5,                                               // optional default 5

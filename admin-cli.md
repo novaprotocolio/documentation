@@ -52,12 +52,12 @@ To use default options, you only need to specify the base and quote token addres
 ```bash
 # Default market creation: specify the token addresses for your trading pair
 nova-dex-ctl market new HOT-WWW \
-  --baseTokenAddress=0x4c4fa7e8ea4cfcfc93deae2c0cff142a1dd3a218 \
+  --baseTokenAddress=0x224E34A640FC4108FABDb201eD85D909059105fA \
   --quoteTokenAddress=0xbc3524faa62d0763818636d5e400f112279d6cc0
 
 # create a new market and specify all attributes
 nova-dex-ctl market new HOT-WWW \
-  --baseTokenAddress=0x4c4fa7e8ea4cfcfc93deae2c0cff142a1dd3a218 \
+  --baseTokenAddress=0x224E34A640FC4108FABDb201eD85D909059105fA \
   --quoteTokenAddress=0xbc3524faa62d0763818636d5e400f112279d6cc0 \
   --minOrderSize=0.1 \
   --pricePrecision=5 \
