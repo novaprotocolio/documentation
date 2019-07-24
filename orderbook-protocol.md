@@ -9,8 +9,8 @@ graph LR
     A[Backend] -->|User Address 1| B(Token Symbol + Contract Address)
     A[Backend] -->|User Address 2| B
     B --> C{Protocol}
-    C -->|Order 1.| D[Order List]
-    C -->|Order 2.| E[Order List]
+    C -->|Order 1| D[Order List]
+    C -->|Order 2| E[Order List]
 ```
 
 **Each orderbook is a red-black tree**

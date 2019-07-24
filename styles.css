@@ -1,0 +1,9 @@
+.roundedClass > rect {
+  fill: #ff6f75 !important;
+  stroke: #9f5069 !important;
+  stroke-width: 4px;
+}
+
+.roundedClass foreignObject {
+  color: #ffffff;
+}

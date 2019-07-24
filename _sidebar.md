@@ -11,6 +11,7 @@
 
 - Protocols
 
+  - [Consensus](consensus.md)
   - [Orderbook](orderbook-protocol.md)
   - [Smart Contracts](smart-contracts.md)
 
