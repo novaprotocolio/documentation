@@ -21,11 +21,5 @@ When user deposit:
 - When user click on history, front-end send request contain wallet address to backend to get history of deposit times. 
 - Backend get txt_reciever field corresponding to this wallet, and send back to front-end 
 
-## api
-- Get generate quote address: 
-`GET /deposit/generate-address?UserAddr=[Wallet address]`
-- Get History:
-`GET /deposit/history?UserAddr=[Wallet address]`
-- Get schema: 
-`GET /deposit/schema`
+
 
