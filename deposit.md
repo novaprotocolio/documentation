@@ -1,4 +1,4 @@
-#Deposit function
+# Deposit function
 
 Allow users to deposit coin into their wallets 
 
