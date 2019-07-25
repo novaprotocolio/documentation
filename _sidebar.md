@@ -15,4 +15,4 @@
   - [Orderbook](orderbook-protocol.md)
   - [Smart Contracts](smart-contracts.md)
 
-- [Changelog](changelog.md)
+- [Changelog](change-log.md)
