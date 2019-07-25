@@ -3,7 +3,7 @@
 Allow users to deposit coin into their wallets 
 
 ## Scenario
-Main scenario when user deposit:
+When user deposit:
 - When user click on deposit, front-end send request contain wallet address to backend
 - If this is first time, backend create a address called is quote address based on master key(only one master key for all)
 and index(unique for each deposit) and send this address to front-end. And backend save this address to deposit table 
@@ -15,6 +15,8 @@ will be count and save to current_block_confirm in  deposit table
 in deposit table
 - When user redeposit, back-end will delete old row corresponding to wallet, and create new quote address and new row in 
 deposit table
+
+
 When user deposit:
 - When user click on history, front-end send request contain wallet address to backend to get history of deposit times. 
 - Backend get txt_reciever field corresponding to this wallet, and send back to front-end 
