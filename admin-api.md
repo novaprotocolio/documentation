@@ -342,3 +342,17 @@ Relayer:
   Monitor that wallet address from Ethereum changed blocks, if there is any deposit amount to that address, record it as the user's deposit.
 
   Create a NovaChain wallet for the user. Transfer the corresponding Nova to user's wallet.
+
+## Generate address
+
+Get generate quote address: 
+
+`GET /deposit/generate-address?UserAddr=[Wallet address]`
+
+## Get History:
+
+`GET /deposit/history?UserAddr=[Wallet address]`
+
+## Get schema: 
+
+`GET /deposit/schema`
