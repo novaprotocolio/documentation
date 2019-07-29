@@ -1,6 +1,7 @@
 - Getting started
 
   - [Development](setup-dev-env.md)
+  - [Novalex chain](novalex.md)
   - [Change network](change-network.md)
 
 - Relayers
