@@ -96,3 +96,61 @@ After 900 blocks, a checkpoint block is created, the masternode who takes turn i
    \end{bmatrix} \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;(2)
    \end{alignedat}
    $$
+
+### Terminology
+
+Time, Slot, Epoch: as previously described, each epoch is divided into 900 block time, that is called block slot.
+The algorithm is as following:
+
+```code
+ledger function consensus_protocol(m: masternodes, n: slots) {
+  C = empty_blockchain
+  initiate_ICO(coinholders)
+  for(masternode in m) {
+    vote(masternode)
+  }
+
+  e1 = initiate_epoch(sl1,sl2,..,sln)
+  SV1 = random_array(m)
+  B0 = create_genesis()
+  C = C.push(B0)
+
+  while(true){
+    while (j < n) {
+      Bj = create_block(m[0])
+      C.push(Bj)
+      validate_block(Bj, SV1)
+      broadcast_block(Bj, m)
+      validate_block(Bj, m)
+      if Bj.hasMembersSign() > 3/4 {
+        finality(Bj)
+      }
+      if j = n {
+        j = 1
+      } else {
+        j++
+      }
+    }
+
+    if len(C) mode n = 0 {
+      do_checkpoint()
+      vote(masternode)
+      SVi = random_array(m)
+      ei = 2*n*i + e1
+      i++
+    }
+  }
+}
+```
+
+```mermaid
+sequenceDiagram
+    participant E1 as Epoch (K - 1)
+    participant E2 as Epoch (K)
+    E1->>E2: Create, broadcast, validate, sign the blocks for Epoch K
+    E1->>E2: Randomly generate seeds, send message to Smart Contract
+    E1->>E2: Checkpoint
+
+```
+
+Because the order of block creation masternodes is pre-determined for each epoch, random/arbitrary forks are hardly happened. As long as the number of attackers is less than $\frac 1 4$ the number of masternodes, block is finallized and no chance to create longer valid chain.
