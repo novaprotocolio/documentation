@@ -52,6 +52,47 @@ After 900 blocks, a checkpoint block is created, the masternode who takes turn i
    \end{bmatrix}
    $$
 
-   Special random number $Recommend_i$ = $[r_{i.1},r_{i.2},...,r_{i.n},\theta_{i}]$ where $r_{i,k} \in [1,...,m]$
+   Let m be the number of masternodes, n be the number of slots in an epoch. in order to randomly generate the block verifier for the next epoch e + 1, the process is perform as the following steps:
 
-3. Randomization: each masternode will create an array of n+1 special random number Recommendi =
+   - **Step 1: Random number generation:** At the beginning of epcho e, each masternode $V_i$ will securely create an array of n + 1 special random numbers $Recommend_i$ = $[r_{i.1},r_{i.2},...,r_{i.n},\theta_{i}]$ where $r_{i,k} \in [1,...,m]$ indicating the recommendation of ordered list of block verifiers for the next epoch of $V_i$, and $\theta_i \in \lbrace -1,0,1 \rbrace$ is used for increasing the unpredictability of the random numbers.
+     Then each masternode has to encrypt the array $Recommend_i$ using a secret key $SK_i$, say $Secret_i = Encrypt(Recommend_i, SK_i)$ as the encrypted array. Next each masternode forms a "lock" message that contains the encrypted array, signs off this message with its blockchain's private key along with the corresponding epoch index. By doing this, every masternode can check who created this lock message through ECDSA verification scheme. Finally each node sends their lock message with its signature and public key to the smart contract stored in blockchain, so that each masternode can collect and know the locks from all other masternodes.
+
+   - **Step 2: Recovery Phase:** The recovery phase is for every node to reveal its previous lock message so that other nodes can get to know the secret array it has sent before. This happens when all masternodes have sent their lock messages or a certain timeout event occurs. Each masternode then opens its lock message by sending unlock message to the smart contract. Eventually a masternode has both locks and unlocks of others. If some electors are adversaries which might publish it's lock but intend not to send the corresponding unlock, other masternodes can ignore by simple setting all its random values to 1 as default.
+
+   - **Step 3: Assembled Matrix and Computation Phase:** At the point of slot $n^th$ of the epoch e, the secret arrays $Secret_i$ will be decrypted by each masternode and return the plain version of $Recommend_i$. Each tuple of the first n numbers of each $V_i$ will be assembled as the $i^th$ column of an n x m matrix. All the last number $\theta_i$ forms a m x 1 matrix. Then each node will compute the block verifiers ordered list by some mathematical operations as explained below. The result is a matrix n x 1 indicating the order of block verifiers for the next epoch e + 1.
+
+   The Second Masternode/Block Verifier: Each node computes the common array $v_2$ for the order of the block verifiers by the following steps as in Equation 1. Then, $v_2$ is obtained by modulo operation of element values of $v^{\prime}_2$ as in Equation 2.
+
+   $$
+   \begin{alignedat}{1}
+   [v^{\prime}_{2}] =
+   \begin{bmatrix}
+   v_{2.1}^{e+1} \\
+   v_{2.2}^{e+1} \\
+   \vdots \\
+   v_{2.n-1}^{e+1} \\
+   v_{2.n}^{e+1}
+   \end{bmatrix} =
+   \begin{bmatrix}
+   r_{1.1} & r_{2.1} & \dots & r_{m.1} \\
+   r_{1.2} & r_{2.2} & \ddots & \vdots \\
+   r_{1.3} & \ddots & \ddots & r_{m.3} \\
+   \vdots & \ddots & r_{m-1.n-1} & r_{m.n-1} \\
+   r_{1.n} & \dots & r_{m-1.n} & r_{m.n}
+   \end{bmatrix}
+   \begin{bmatrix}
+   \theta_1 \\
+   \theta_2 \\
+   \theta_3 \\
+   \vdots \\
+   \theta_m
+   \end{bmatrix} \;\;\;\;\;\;\;\;\;\;\;\;\;\;(1) \\ \; \\ \; \\
+   [v_2] = [v^{\prime}_{2} \space\space mod \space m] =
+   \begin{bmatrix}
+   |v_{2.1}^{e+1}| & mod \space m \\
+   |v_{2.2}^{e+1}| & mod \space m \\
+   \vdots \\
+   |v_{2.n}^{e+1}| & mod \space m
+   \end{bmatrix} \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;(2)
+   \end{alignedat}
+   $$
