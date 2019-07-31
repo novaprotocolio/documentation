@@ -6,7 +6,7 @@ Novalex is a public EVM-compartible blockchain with the following advantages:
 
 - low transaction fee
 - fast confirmation time
-- double validation
+- double validation with AI ranking
 - randomization for security guarantees
 
 We propose Delegated Proof-Of-Stake consensus, a Proof-Of-Stake based blockchain with fair voting mechanisim.
