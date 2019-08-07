@@ -82,7 +82,7 @@ Block is created by block producer, namely masternode. First block creator is mo
    \end{alignedat}
    $$
 
-   The final randomized ranking list is as follow:
+   The final randomized ranking list is as follow, with **t<sub>i</sub>** is the total deposit tokens of **masternode i**:
 
    $$
    r_i = \dfrac {t_i}{\textstyle\sum_{i=1}^n t_i} \\ \; \\ \; \\
