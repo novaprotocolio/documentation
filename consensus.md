@@ -13,7 +13,7 @@ graph TB
     I --> |Insertion fails| C1
     I --> |Insertion succeeds| E(Final committed)
     E --> |NEXT SLOT| R((Repeated 600 slots))
-    C1 --> |NEXT SLOT| R
+    C1 --> |CURRENT SLOT| R
     R --> |NEXT EPOCH| A
 
     class A,E roundedClass
