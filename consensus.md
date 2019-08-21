@@ -100,62 +100,174 @@ Block is created by block producer, namely masternode. First block creator is mo
 The algorithm is as following:
 
 ```python
-def simulator(nodes):
-    if len(nodes) == 0:
-        print("number of node is 0, return")
-        return
-    #select leader
+LEADER = "leader"
+VALIDATOR = "validator"
+NUMBER_OF_DEPOSIT = "deposit"
+NODE = "node"
+SPEED = "speed"
+RANKING = "ranking"
+TRUST = "trust"
+NUMBER_OF_EPOCH = "epoch"
+LEADER_TEST = "leader_test"
+VALIDATOR_TEST = "validator_test"
+
+#init nodes
+def init_nodes(number_of_node):
+    nodes = []
+    for i in range(number_of_node):
+        nodes.append({})
+        nodes[i][NODE] = i+1
+        nodes[i][SPEED] = 0
+        nodes[i][RANKING] = 0
+        nodes[i][TRUST] = 0
+        nodes[i][LEADER] = 0
+        nodes[i][VALIDATOR] = 0
+        nodes[i][NUMBER_OF_DEPOSIT] = 0
+        nodes[i][NUMBER_OF_EPOCH] = 0
+        nodes[i][LEADER_TEST] = 0
+        nodes[i][VALIDATOR_TEST] = 0
+
+    return nodes
+
+#random speed of nodes
+def random_nodes_speed(nodes):
+    arr_speed = np.random.randint(low=5,high=10,size=len(nodes)).tolist()
+    for i in range(len(arr_speed)):
+        nodes[i][SPEED] = arr_speed[i]
+    return arr_speed
+In [4]:
+#random number of epochs that masternode join in blockchain
+def random_epochs_of_nodes(nodes, total_epoch):
+    arr_epochs = np.random.randint(low=total_epoch/2,high=total_epoch,size=len(nodes)).tolist()
+    for i in range(len(nodes)):
+        nodes[i][NUMBER_OF_EPOCH] = arr_epochs[i]
+    return arr_epochs
+
+def random_leader(nodes):
+    maximum = -1
+    index_of_leader = -1
+    arr_deposit = np.random.randint(low=50000,high=100000,size=len(nodes)).tolist()
+    for i in range(len(arr_deposit)):
+        if arr_deposit[i] > maximum:
+            maximum = arr_deposit[i]
+            index_of_leader = i
+    nodes[index_of_leader][LEADER] += 1
+
+def random_validator(nodes):
+    maximum = -1
+    index_of_validator = -1
+    arr_validator = np.random.rand(len(nodes)).tolist()
+    for i in range(len(arr_validator)):
+        if arr_validator[i] > maximum:
+            maximum = arr_validator[i]
+            index_of_validator = i
+    nodes[index_of_validator][VALIDATOR] += 1
+
+def deposit_votes(nodes):
+    deposit_vote_max = -1
+    arr_deposit_vote = np.random.randint(low=50000,high=1000000,size=len(nodes)).tolist()
+#     arr_deposit_vote = np.sort(arr_deposit_vote)[::-1]
+    for i in range(len(arr_deposit_vote)):
+        nodes[i][NUMBER_OF_DEPOSIT] = arr_deposit_vote[i]
+        if arr_deposit_vote[i] > deposit_vote_max:
+            deposit_vote_max = arr_deposit_vote[i]
+    return arr_deposit_vote, deposit_vote_max
+
+# chose a leader node by voting
+def vote_leader_test01(nodes):
 
     #random array with length is number of canidate of leader
-    rand_arr = np.random.rand(len(nodes)).tolist()
-    for i in range(len(rand_arr)):
-        nodes[i][POINT] += rand_arr[i]
+    arr_random = np.random.rand(len(nodes)).tolist()
 
     #select lead node
     index_of_leader = -1
     maximum = -1
-    for i in range(len(rand_arr)):
-        if rand_arr[i] > maximum:
-            index_of_leader = i
-            maximum = rand_arr[i]
-    if index_of_leader == -1:
-        print("index of leader is -1, return")
-        return
-    nodes[index_of_leader][NUMBER_OF_VOTE] += 1
-
-    #select validator
-
-    point_arr = []
-    total = 0
+    arr_leader = []
     for i in range(len(nodes)):
-        if i != index_of_leader:
-            total += nodes[i][POINT]
-            point_arr.append(nodes[i][POINT])
-    mean = total/(len(nodes) - 1)
+        multi = nodes[i][NUMBER_OF_DEPOSIT] * arr_random[i]
+        arr_leader.append(multi)
+        if multi > maximum:
+            index_of_leader = i
+            maximum = arr_leader[i]
+    nodes[index_of_leader][LEADER_TEST] += 1
+    return index_of_leader
 
-    rand_ranking = np.random.rand(len(nodes) -1).tolist()
+# Trust for each masternode
+def trust(nodes, arr_speed, total_epoch):
+    trust_max = 0
+    speed_arg = sum(arr_speed)/len(nodes)
+    a,b,c,d = 0.25, 0.1, 0.3, 0.35
+    for i in range(len(arr_deposit_vote)):
+        trust = a*(nodes[i][NUMBER_OF_EPOCH]/total_epoch) + b*(
+                nodes[i][SPEED]/speed_arg) + c*(
+                nodes[i][LEADER]/nodes[i][NUMBER_OF_EPOCH]) + d*(
+                nodes[i][VALIDATOR]/nodes[i][NUMBER_OF_EPOCH])
+        nodes[i][TRUST] = trust
+        if trust > trust_max:
+            trust_max = trust
+    return trust_max
 
+# Ranking for each masternode
+def ranking(nodes, arr_deposit_vote, trust_max, deposit_max):
+    total_deposit = sum(arr_deposit_vote)
 
+    a = 0.25
+    for i in range(len(nodes)):
+        vote_deposit_avg = arr_deposit_vote[i] / deposit_max
+        trust_avg = nodes[i][TRUST] / trust_max
+        nodes[i][RANKING] = a * vote_deposit_avg + (1-a) * math.sqrt(trust_avg)
+        print(vote_deposit_avg, ":", trust_avg)
+
+# Random validator base on Ranking of each node
+def choose_validator_test(nodes, leader):
     index_of_validator = -1
     maximum = -1
-    for i in range(len(rand_ranking)):
-        if mean != 0:
-            rank_point = rand_ranking[i] * point_arr[i] * 1/mean
-        else:
-            rank_point = rand_ranking[i] * point_arr[i]
-        if rank_point > maximum:
-            index_of_validator = i
-            maximum = rank_point
 
-    if index_of_validator == -1:
-        print("index of validator is -1, return")
-    if index_of_validator >= index_of_leader:
-        nodes[index_of_validator + 1][NUMBER_OF_VALIDATOR] += 1
-    else:
-        nodes[index_of_validator][NUMBER_OF_VALIDATOR] += 1
+    arr_random = np.random.rand(len(nodes)).tolist()
+    for i in range(len(arr_random)):
+        if nodes[i][RANKING] == 0:
+            point = arr_random[i]
+        else:
+            point = math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
+
+        if point > maximum:
+            maximum = point
+            if i != leader:
+                index_of_validator = i
+
+    nodes[index_of_validator][VALIDATOR_TEST] += 1
+    return index_of_validator
+
+# Init nodes and data nodes
+nodes = init_nodes(1000)
+total_epoch = 5000  # Total epoch in blockchain
+arr_speed = random_nodes_speed(nodes)
+random_epochs_of_nodes(nodes, total_epoch)
+for i in range(total_epoch):
+    random_leader(nodes)
+    random_validator(nodes)
+```
+
+**Start running**
+
+```python
+arr_deposit_vote, deposit_max = deposit_votes(nodes)
+trust_max = trust(nodes, arr_speed, total_epoch)
+ranking(nodes, arr_deposit_vote, trust_max, deposit_max)
+
+for i in range(len(nodes)):
+    nodes[i][LEADER_TEST] = 0
+    nodes[i][VALIDATOR_TEST] = 0
+for i in range(100000):
+    leader_test = vote_leader_test01(nodes)
+    validator_test = choose_validator_test(nodes, leader_test)
+nodes.sort(key=lambda x: x[RANKING])
 ```
 
 ![selection](assets/node_selection.png)
+
+**With 1 000 000 nodes**  
+![1 million node](assets/consensus_1m.png)
 
 ```mermaid
 sequenceDiagram
