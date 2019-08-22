@@ -1,12 +1,12 @@
-
 # Abstract
+
 We introduce a new blockchain architecture and concept that is practical in terms of operability, scalable and economically sensible. NovaChain is a public EVM-compatible blockchain that focuses on maintaining an instantaneous confirmation time, high level of security and a sensible compensation scheme. We used a ranking proof of stake consensus for increased security and fast confrimation. Our ranking-bias voting mechanism provides a fair compensation scheme for our masternodes, thus encouraging each maternode to improve on its performance for maximum compensation. This benefits the entire ecosystem through healthy competition and high masternode engagement. Using our robust ecosystem, we eventually aim to built practical decentralised applications that will generate a revenue stream for our coin holders providing immediate dividends unlike an Equity underlying which normally pay quaterly dividends. This will greatly help the cryptocurrency ecosystem by conceptually bring it closer to mainstream finance and ultimately gaining institutional acceptance.
 
-# 
+#
+
 The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain that is pushing the boundaries of decentralisation. Our focus is not only on buiding the underlying blockchain technology. We also leverage the technology to build useful DApps that the transcend the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying.
 
 # Architecture
-
 
 # Ranking Proof Of Stake Consensus
 
@@ -110,73 +110,9 @@ Block is created by block producer, namely masternode. First block creator is mo
 The algorithm is as following:
 
 ```python
-LEADER = "leader"
-VALIDATOR = "validator"
-NUMBER_OF_DEPOSIT = "deposit"
-NODE = "node"
-SPEED = "speed"
-RANKING = "ranking"
-TRUST = "trust"
-NUMBER_OF_EPOCH = "epoch"
-LEADER_TEST = "leader_test"
-VALIDATOR_TEST = "validator_test"
-
-#init nodes
-def init_nodes(number_of_node):
-    nodes = []
-    for i in range(number_of_node):
-        nodes.append({})
-        nodes[i][NODE] = i+1
-        nodes[i][SPEED] = 0
-        nodes[i][RANKING] = 0
-        nodes[i][TRUST] = 0
-        nodes[i][LEADER] = 0
-        nodes[i][VALIDATOR] = 0
-        nodes[i][NUMBER_OF_DEPOSIT] = 0
-        nodes[i][NUMBER_OF_EPOCH] = 0
-        nodes[i][LEADER_TEST] = 0
-        nodes[i][VALIDATOR_TEST] = 0
-
-    return nodes
-
-#random speed of nodes
-def random_nodes_speed(nodes):
-    arr_speed = np.random.randint(low=5,high=10,size=len(nodes)).tolist()
-    for i in range(len(arr_speed)):
-        nodes[i][SPEED] = arr_speed[i]
-    return arr_speed
-In [4]:
-#random number of epochs that masternode join in blockchain
-def random_epochs_of_nodes(nodes, total_epoch):
-    arr_epochs = np.random.randint(low=total_epoch/2,high=total_epoch,size=len(nodes)).tolist()
-    for i in range(len(nodes)):
-        nodes[i][NUMBER_OF_EPOCH] = arr_epochs[i]
-    return arr_epochs
-
-def random_leader(nodes):
-    maximum = -1
-    index_of_leader = -1
-    arr_deposit = np.random.randint(low=50000,high=100000,size=len(nodes)).tolist()
-    for i in range(len(arr_deposit)):
-        if arr_deposit[i] > maximum:
-            maximum = arr_deposit[i]
-            index_of_leader = i
-    nodes[index_of_leader][LEADER] += 1
-
-def random_validator(nodes):
-    maximum = -1
-    index_of_validator = -1
-    arr_validator = np.random.rand(len(nodes)).tolist()
-    for i in range(len(arr_validator)):
-        if arr_validator[i] > maximum:
-            maximum = arr_validator[i]
-            index_of_validator = i
-    nodes[index_of_validator][VALIDATOR] += 1
-
 def deposit_votes(nodes):
     deposit_vote_max = -1
     arr_deposit_vote = np.random.randint(low=50000,high=1000000,size=len(nodes)).tolist()
-#     arr_deposit_vote = np.sort(arr_deposit_vote)[::-1]
     for i in range(len(arr_deposit_vote)):
         nodes[i][NUMBER_OF_DEPOSIT] = arr_deposit_vote[i]
         if arr_deposit_vote[i] > deposit_vote_max:
@@ -184,7 +120,7 @@ def deposit_votes(nodes):
     return arr_deposit_vote, deposit_vote_max
 
 # chose a leader node by voting
-def vote_leader_test01(nodes):
+def vote_leader_test(nodes):
 
     #random array with length is number of canidate of leader
     arr_random = np.random.rand(len(nodes)).tolist()
@@ -226,7 +162,7 @@ def ranking(nodes, arr_deposit_vote, trust_max, deposit_max):
         vote_deposit_avg = arr_deposit_vote[i] / deposit_max
         trust_avg = nodes[i][TRUST] / trust_max
         nodes[i][RANKING] = a * vote_deposit_avg + (1-a) * math.sqrt(trust_avg)
-        print(vote_deposit_avg, ":", trust_avg)
+
 
 # Random validator base on Ranking of each node
 def choose_validator_test(nodes, leader):
@@ -268,7 +204,7 @@ ranking(nodes, arr_deposit_vote, trust_max, deposit_max)
 for i in range(len(nodes)):
     nodes[i][LEADER_TEST] = 0
     nodes[i][VALIDATOR_TEST] = 0
-for i in range(100000):
+for i in range(500000):
     leader_test = vote_leader_test01(nodes)
     validator_test = choose_validator_test(nodes, leader_test)
 nodes.sort(key=lambda x: x[RANKING])
@@ -276,7 +212,7 @@ nodes.sort(key=lambda x: x[RANKING])
 
 ![selection](assets/node_selection.png)
 
-**With 1 000 000 nodes**  
+**With 150 nodes testing in 100.000 and 500.000 loop**  
 ![1 million node](assets/consensus_1m.png)
 
 ```mermaid
@@ -296,16 +232,10 @@ By applying ranking algorithm ( AI enhanced ) we can solve the most vexing limit
 
 ### Performance of Voting Mechanism
 
-
-
 # Application
 
 ### Financial Services: Decentralised Exchange
 
 ### Financial Services: KYC and AML Application
 
-
 # Conclusion
-
-
-
