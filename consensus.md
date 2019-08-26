@@ -110,14 +110,6 @@ Block is created by block producer, namely masternode. First block creator is mo
 The algorithm is as following:
 
 ```python
-def deposit_votes(nodes):
-    deposit_vote_max = -1
-    arr_deposit_vote = np.random.randint(low=50000,high=1000000,size=len(nodes)).tolist()
-    for i in range(len(arr_deposit_vote)):
-        nodes[i][NUMBER_OF_DEPOSIT] = arr_deposit_vote[i]
-        if arr_deposit_vote[i] > deposit_vote_max:
-            deposit_vote_max = arr_deposit_vote[i]
-    return arr_deposit_vote, deposit_vote_max
 
 # chose a leader node by voting
 def vote_leader_test(nodes):
@@ -183,7 +175,6 @@ def choose_validator_test(nodes, leader):
 **Start running**
 
 ```python
-arr_deposit_vote, deposit_max = deposit_votes(nodes)
 trust_max = trust(nodes, arr_speed, total_epoch)
 ranking(nodes, arr_deposit_vote, trust_max, deposit_max)
 
