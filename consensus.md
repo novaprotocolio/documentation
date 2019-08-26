@@ -3,7 +3,7 @@
 We introduce a new blockchain architecture and concept that is practical in terms of operability, scalable and economically sensible. Novalex blockchain is a public EVM-compatible blockchain that focuses on maintaining an instantaneous confirmation time, high level of security and a sensible compensation scheme. We used a ranking proof of stake consensus for increased security and fast confrimation. Our ranking-bias voting mechanism provides a fair compensation scheme for our masternodes, thus encouraging each maternode to improve on its performance for maximum compensation. This benefits the entire ecosystem through healthy competition and high masternode engagement. Using our robust ecosystem, we eventually aim to built practical decentralised applications that will generate a revenue stream for our coin holders providing immediate dividends unlike an Equity underlying which normally pay quaterly dividends. This will greatly help the cryptocurrency ecosystem by conceptually bring it closer to mainstream finance and ultimately gaining institutional acceptance.
 
 # Introduction
-The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain that is pushing the boundaries of decentralisation. Our focus is not only on buiding the underlying blockchain technology. We also leverage the technology to build useful DApps that the transcend the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying.
+The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain that is pushing the boundaries of decentralisation. Our focus is not only on buiding the underlying blockchain technology. We also leverage the technology to build useful DApps that transcends the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying. [link][1]
 
 
 
@@ -294,7 +294,7 @@ sequenceDiagram
 
 Because the order of block creation masternodes is pre-determined for each epoch, random/arbitrary forks are hardly happened. As long as the number of attackers is less than $\frac 1 4$ the number of masternodes, block is finallized and no chance to create longer valid chain.
 
-The random order of masternode array is then multiply with a rank array to get the final ordered list.
+The random order of masternode array is then multiply with a rank array to get the final ordered list [1].
 By applying ranking algorithm ( AI enhanced ) we can solve the most vexing limitation and increase TPS close to Visa.
 
 ### Performance of Voting Mechanism
@@ -312,3 +312,7 @@ By applying ranking algorithm ( AI enhanced ) we can solve the most vexing limit
 
 
 
+#References
+
+[1]:  [Ethereum Paper  ](https://github.com/ethereum/wiki/wiki/White-Paper)  
+[2]
