@@ -212,13 +212,8 @@ nodes.sort(key=lambda x: x[RANKING])
 
 ![selection](assets/node_selection.png)
 
-<<<<<<< HEAD
-**With 150 nodes testing in 100.000 and 500.000 loop**  
-=======
-**With 1 000 000 transaction sample**
-
-> > > > > > > 2ffd33ef622ed6ec4364447e9b752d70f91a40e7
-> > > > > > > ![1 million node](assets/consensus_1m.png)
+**With 100 000 and 500 000 Epoch sample**  
+![1 million node](assets/consensus_1m.png)
 
 ```mermaid
 sequenceDiagram
