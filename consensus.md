@@ -4,9 +4,11 @@ We introduce a new blockchain architecture and concept that is practical in term
 
 # Introduction
 
-The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain that is pushing the boundaries of decentralisation. Our focus is not only on buiding the underlying blockchain technology. We also leverage the technology to build useful DApps that the transcend the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying.
+The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain that is pushing the boundaries of decentralisation. Our focus is not only on buiding the underlying blockchain technology. We also leverage the technology to build useful DApps that transcends the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying. [link][1]
 
 # Architecture
+
+### Reward Mechanism
 
 # Ranking Proof Of Stake Consensus
 
@@ -252,3 +254,8 @@ math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
 ### Financial Services: KYC and AML Application
 
 # Conclusion
+
+#References
+
+[1]: [Ethereum Paper ](https://github.com/ethereum/wiki/wiki/White-Paper)  
+[2]
