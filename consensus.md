@@ -1,3 +1,15 @@
+# Abstract
+
+We introduce a new blockchain architecture and concept that is practical in terms of operability, scalable and economically sensible. Novalex blockchain is a public EVM-compatible blockchain that focuses on maintaining an instantaneous confirmation time, high level of security and a sensible compensation scheme. We used a ranking proof of stake consensus for increased security and fast confrimation. Our ranking-bias voting mechanism provides a fair compensation scheme for our masternodes, thus encouraging each maternode to improve on its performance for maximum compensation. This benefits the entire ecosystem through healthy competition and high masternode engagement. Using our robust ecosystem, we eventually aim to built practical decentralised applications that will generate a revenue stream for our coin holders providing immediate dividends unlike an Equity underlying which normally pay quaterly dividends. This will greatly help the cryptocurrency ecosystem by conceptually bring it closer to mainstream finance and ultimately gaining institutional acceptance.
+
+# Introduction
+
+The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain that is pushing the boundaries of decentralisation. Our focus is not only on buiding the underlying blockchain technology. We also leverage the technology to build useful DApps that transcends the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying. [link][1]
+
+# Architecture
+
+### Reward Mechanism
+
 # Ranking Proof Of Stake Consensus
 
 ```mermaid
@@ -100,85 +112,11 @@ Block is created by block producer, namely masternode. First block creator is mo
 The algorithm is as following:
 
 ```python
-LEADER = "leader"
-VALIDATOR = "validator"
-NUMBER_OF_DEPOSIT = "deposit"
-NODE = "node"
-SPEED = "speed"
-RANKING = "ranking"
-TRUST = "trust"
-NUMBER_OF_EPOCH = "epoch"
-LEADER_TEST = "leader_test"
-VALIDATOR_TEST = "validator_test"
-
-#init nodes
-def init_nodes(number_of_node):
-    nodes = []
-    for i in range(number_of_node):
-        nodes.append({})
-        nodes[i][NODE] = i+1
-        nodes[i][SPEED] = 0
-        nodes[i][RANKING] = 0
-        nodes[i][TRUST] = 0
-        nodes[i][LEADER] = 0
-        nodes[i][VALIDATOR] = 0
-        nodes[i][NUMBER_OF_DEPOSIT] = 0
-        nodes[i][NUMBER_OF_EPOCH] = 0
-        nodes[i][LEADER_TEST] = 0
-        nodes[i][VALIDATOR_TEST] = 0
-
-    return nodes
-
-#random speed of nodes
-def random_nodes_speed(nodes):
-    arr_speed = np.random.randint(low=5,high=10,size=len(nodes)).tolist()
-    for i in range(len(arr_speed)):
-        nodes[i][SPEED] = arr_speed[i]
-    return arr_speed
-In [4]:
-#random number of epochs that masternode join in blockchain
-def random_epochs_of_nodes(nodes, total_epoch):
-    arr_epochs = np.random.randint(low=total_epoch/2,high=total_epoch,size=len(nodes)).tolist()
-    for i in range(len(nodes)):
-        nodes[i][NUMBER_OF_EPOCH] = arr_epochs[i]
-    return arr_epochs
-
-def random_leader(nodes):
-    maximum = -1
-    index_of_leader = -1
-    arr_deposit = np.random.randint(low=50000,high=100000,size=len(nodes)).tolist()
-    for i in range(len(arr_deposit)):
-        if arr_deposit[i] > maximum:
-            maximum = arr_deposit[i]
-            index_of_leader = i
-    nodes[index_of_leader][LEADER] += 1
-
-def random_validator(nodes):
-    maximum = -1
-    index_of_validator = -1
-    arr_validator = np.random.rand(len(nodes)).tolist()
-    for i in range(len(arr_validator)):
-        if arr_validator[i] > maximum:
-            maximum = arr_validator[i]
-            index_of_validator = i
-    nodes[index_of_validator][VALIDATOR] += 1
-
-def deposit_votes(nodes):
-    deposit_vote_max = -1
-    arr_deposit_vote = np.random.randint(low=50000,high=1000000,size=len(nodes)).tolist()
-#     arr_deposit_vote = np.sort(arr_deposit_vote)[::-1]
-    for i in range(len(arr_deposit_vote)):
-        nodes[i][NUMBER_OF_DEPOSIT] = arr_deposit_vote[i]
-        if arr_deposit_vote[i] > deposit_vote_max:
-            deposit_vote_max = arr_deposit_vote[i]
-    return arr_deposit_vote, deposit_vote_max
 
 # chose a leader node by voting
-def vote_leader_test01(nodes):
-
+def vote_leader_test(nodes):
     #random array with length is number of canidate of leader
     arr_random = np.random.rand(len(nodes)).tolist()
-
     #select lead node
     index_of_leader = -1
     maximum = -1
@@ -196,8 +134,10 @@ def vote_leader_test01(nodes):
 def trust(nodes, arr_speed, total_epoch):
     trust_max = 0
     speed_arg = sum(arr_speed)/len(nodes)
+    # weight for Trust algorithm
     a,b,c,d = 0.25, 0.1, 0.3, 0.35
     for i in range(len(arr_deposit_vote)):
+        # Trust algorithm
         trust = a*(nodes[i][NUMBER_OF_EPOCH]/total_epoch) + b*(
                 nodes[i][SPEED]/speed_arg) + c*(
                 nodes[i][LEADER]/nodes[i][NUMBER_OF_EPOCH]) + d*(
@@ -210,63 +150,48 @@ def trust(nodes, arr_speed, total_epoch):
 # Ranking for each masternode
 def ranking(nodes, arr_deposit_vote, trust_max, deposit_max):
     total_deposit = sum(arr_deposit_vote)
-
     a = 0.25
     for i in range(len(nodes)):
         vote_deposit_avg = arr_deposit_vote[i] / deposit_max
         trust_avg = nodes[i][TRUST] / trust_max
         nodes[i][RANKING] = a * vote_deposit_avg + (1-a) * math.sqrt(trust_avg)
-        print(vote_deposit_avg, ":", trust_avg)
 
 # Random validator base on Ranking of each node
 def choose_validator_test(nodes, leader):
     index_of_validator = -1
     maximum = -1
-
     arr_random = np.random.rand(len(nodes)).tolist()
     for i in range(len(arr_random)):
         if nodes[i][RANKING] == 0:
             point = arr_random[i]
         else:
             point = math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
-
         if point > maximum:
             maximum = point
             if i != leader:
                 index_of_validator = i
-
     nodes[index_of_validator][VALIDATOR_TEST] += 1
     return index_of_validator
-
-# Init nodes and data nodes
-nodes = init_nodes(1000)
-total_epoch = 5000  # Total epoch in blockchain
-arr_speed = random_nodes_speed(nodes)
-random_epochs_of_nodes(nodes, total_epoch)
-for i in range(total_epoch):
-    random_leader(nodes)
-    random_validator(nodes)
 ```
 
 **Start running**
 
 ```python
-arr_deposit_vote, deposit_max = deposit_votes(nodes)
 trust_max = trust(nodes, arr_speed, total_epoch)
 ranking(nodes, arr_deposit_vote, trust_max, deposit_max)
 
 for i in range(len(nodes)):
     nodes[i][LEADER_TEST] = 0
     nodes[i][VALIDATOR_TEST] = 0
-for i in range(100000):
+for i in range(500000):
     leader_test = vote_leader_test01(nodes)
     validator_test = choose_validator_test(nodes, leader_test)
 nodes.sort(key=lambda x: x[RANKING])
 ```
 
+**With 100 000 and 500 000 Epoch sample**  
 ![selection](assets/node_selection.png)
 
-**With 1 000 000 nodes**  
 ![1 million node](assets/consensus_1m.png)
 
 ```mermaid
@@ -281,5 +206,56 @@ sequenceDiagram
 
 Because the order of block creation masternodes is pre-determined for each epoch, random/arbitrary forks are hardly happened. As long as the number of attackers is less than $\frac 1 4$ the number of masternodes, block is finallized and no chance to create longer valid chain.
 
-The random order of masternode array is then multiply with a rank array to get the final ordered list.
-By applying ranking algorithm ( AI enhanced ) we can solve the most vexing limitation and increase TPS close to Visa.
+The random order of masternode array is then multiply with a rank array to get the final ordered list. By applying ranking algorithm ( AI enhanced ) we can solve the most vexing limitation and increase TPS close to Visa.
+
+### Performance of Voting Mechanism
+
+Instead of just using the random function to choose the masternode to be the validator, we use ranking to select validator. Purpose to reduce the ability of the masternode which is less trusted to become validator.
+
+Our ranking builds based on 2 factors: deposit amount and reliability of each masternode. This below is the ranking formula:
+
+```python
+nodes[i][RANKING] = 0.25 * vote_deposit_avg + 0.75 * math.sqrt(trust_avg)
+```
+
+We use weighted for 2 variables. Because we selected the leader based on the amount of deposit that is so we don't want the validator to depend too much on the deposit. Therefore we chose 0.25 for money deposit and 0.75 for trust.
+
+For deposit, we charge the deposit based on the deposit_vote of the masternode and divide for the most deposit_vote.And so is reliability.
+
+```python
+vote_deposit_avg = arr_deposit_vote[i] / deposit_max
+```
+
+And so is reliability.
+
+```python
+trust_avg = nodes[i][TRUST] / trust_max
+```
+
+In terms of reliability, we build on 4 main factors: the number of epochs that the node participates in, the CPU processing speed, the number of times to become the leader, the number of times to become the validator. As above, we rated the weight for each variable respectively 0.25, 0.1, 0.3, 0.35.
+
+```python
+trust = a*(nodes[i][NUMBER_OF_EPOCH]/total_epoch) + b*(
+    nodes[i][SPEED]/speed_arg) + c*(
+    nodes[i][LEADER]/nodes[i][NUMBER_OF_EPOCH]) + d*(
+    nodes[i][VALIDATOR]/nodes[i][NUMBER_OF_EPOCH])
+```
+
+Finally, to select the masternode to become validator, we multiply the ranking with random function
+
+```python
+math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
+```
+
+# Application
+
+### Financial Services: Decentralised Exchange
+
+### Financial Services: KYC and AML Application
+
+# Conclusion
+
+#References
+
+[1]: [Ethereum Paper ](https://github.com/ethereum/wiki/wiki/White-Paper)  
+[2]
