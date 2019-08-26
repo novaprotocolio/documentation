@@ -227,10 +227,16 @@ nodes[i][RANKING] = 0.25 * vote_deposit_avg + 0.75 * math.sqrt(trust_avg)
 
 We use weighted for 2 variables. Because we selected the leader based on the amount of deposit that is so we don't want the validator to depend too much on the deposit. Therefore we chose 0.25 for money deposit and 0.75 for trust.
 
-For deposit, we charge the deposit based on the deposit_vote of the masternode and divide for the most deposit_vote.
+For deposit, we charge the deposit based on the deposit_vote of the masternode and divide for the most deposit_vote.And so is reliability.
 
 ```python
 vote_deposit_avg = arr_deposit_vote[i] / deposit_max
+```
+
+And so is reliability.
+
+```python
+trust_avg = nodes[i][TRUST] / trust_max
 ```
 
 In terms of reliability, we build on 4 main factors: the number of epochs that the node participates in, the CPU processing speed, the number of times to become the leader, the number of times to become the validator. As above, we rated the weight for each variable respectively 0.25, 0.1, 0.3, 0.35.
@@ -240,6 +246,12 @@ trust = a*(nodes[i][NUMBER_OF_EPOCH]/total_epoch) + b*(
     nodes[i][SPEED]/speed_arg) + c*(
     nodes[i][LEADER]/nodes[i][NUMBER_OF_EPOCH]) + d*(
     nodes[i][VALIDATOR]/nodes[i][NUMBER_OF_EPOCH])
+```
+
+Finally, to select the masternode to become validator, we multiply the ranking with random function
+
+```python
+math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
 ```
 
 # Application
