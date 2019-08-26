@@ -9,6 +9,7 @@ The cryptocurrency market has seen its share of bust and boom. The entire ecosys
 
 # Architecture
 
+### Reward Mechanism
 
 # Ranking Proof Of Stake Consensus
 
