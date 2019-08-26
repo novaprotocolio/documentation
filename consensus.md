@@ -121,10 +121,8 @@ def deposit_votes(nodes):
 
 # chose a leader node by voting
 def vote_leader_test(nodes):
-
     #random array with length is number of canidate of leader
     arr_random = np.random.rand(len(nodes)).tolist()
-
     #select lead node
     index_of_leader = -1
     maximum = -1
@@ -142,8 +140,10 @@ def vote_leader_test(nodes):
 def trust(nodes, arr_speed, total_epoch):
     trust_max = 0
     speed_arg = sum(arr_speed)/len(nodes)
+    # weight for Trust algorithm
     a,b,c,d = 0.25, 0.1, 0.3, 0.35
     for i in range(len(arr_deposit_vote)):
+        # Trust algorithm
         trust = a*(nodes[i][NUMBER_OF_EPOCH]/total_epoch) + b*(
                 nodes[i][SPEED]/speed_arg) + c*(
                 nodes[i][LEADER]/nodes[i][NUMBER_OF_EPOCH]) + d*(
@@ -156,42 +156,28 @@ def trust(nodes, arr_speed, total_epoch):
 # Ranking for each masternode
 def ranking(nodes, arr_deposit_vote, trust_max, deposit_max):
     total_deposit = sum(arr_deposit_vote)
-
     a = 0.25
     for i in range(len(nodes)):
         vote_deposit_avg = arr_deposit_vote[i] / deposit_max
         trust_avg = nodes[i][TRUST] / trust_max
         nodes[i][RANKING] = a * vote_deposit_avg + (1-a) * math.sqrt(trust_avg)
 
-
 # Random validator base on Ranking of each node
 def choose_validator_test(nodes, leader):
     index_of_validator = -1
     maximum = -1
-
     arr_random = np.random.rand(len(nodes)).tolist()
     for i in range(len(arr_random)):
         if nodes[i][RANKING] == 0:
             point = arr_random[i]
         else:
             point = math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
-
         if point > maximum:
             maximum = point
             if i != leader:
                 index_of_validator = i
-
     nodes[index_of_validator][VALIDATOR_TEST] += 1
     return index_of_validator
-
-# Init nodes and data nodes
-nodes = init_nodes(1000)
-total_epoch = 5000  # Total epoch in blockchain
-arr_speed = random_nodes_speed(nodes)
-random_epochs_of_nodes(nodes, total_epoch)
-for i in range(total_epoch):
-    random_leader(nodes)
-    random_validator(nodes)
 ```
 
 **Start running**
@@ -210,9 +196,9 @@ for i in range(500000):
 nodes.sort(key=lambda x: x[RANKING])
 ```
 
+**With 100 000 and 500 000 Epoch sample**  
 ![selection](assets/node_selection.png)
 
-**With 100 000 and 500 000 Epoch sample**  
 ![1 million node](assets/consensus_1m.png)
 
 ```mermaid
@@ -227,10 +213,34 @@ sequenceDiagram
 
 Because the order of block creation masternodes is pre-determined for each epoch, random/arbitrary forks are hardly happened. As long as the number of attackers is less than $\frac 1 4$ the number of masternodes, block is finallized and no chance to create longer valid chain.
 
-The random order of masternode array is then multiply with a rank array to get the final ordered list.
-By applying ranking algorithm ( AI enhanced ) we can solve the most vexing limitation and increase TPS close to Visa.
+The random order of masternode array is then multiply with a rank array to get the final ordered list. By applying ranking algorithm ( AI enhanced ) we can solve the most vexing limitation and increase TPS close to Visa.
 
 ### Performance of Voting Mechanism
+
+Instead of just using the random function to choose the masternode to be the validator, we use ranking to select validator. Purpose to reduce the ability of the masternode which is less trusted to become validator.
+
+Our ranking builds based on 2 factors: deposit amount and reliability of each masternode. This below is the ranking formula:
+
+```python
+nodes[i][RANKING] = 0.25 * vote_deposit_avg + 0.75 * math.sqrt(trust_avg)
+```
+
+We use weighted for 2 variables. Because we selected the leader based on the amount of deposit that is so we don't want the validator to depend too much on the deposit. Therefore we chose 0.25 for money deposit and 0.75 for trust.
+
+For deposit, we charge the deposit based on the deposit_vote of the masternode and divide for the most deposit_vote.
+
+```python
+vote_deposit_avg = arr_deposit_vote[i] / deposit_max
+```
+
+In terms of reliability, we build on 4 main factors: the number of epochs that the node participates in, the CPU processing speed, the number of times to become the leader, the number of times to become the validator. As above, we rated the weight for each variable respectively 0.25, 0.1, 0.3, 0.35.
+
+```python
+trust = a*(nodes[i][NUMBER_OF_EPOCH]/total_epoch) + b*(
+    nodes[i][SPEED]/speed_arg) + c*(
+    nodes[i][LEADER]/nodes[i][NUMBER_OF_EPOCH]) + d*(
+    nodes[i][VALIDATOR]/nodes[i][NUMBER_OF_EPOCH])
+```
 
 # Application
 
