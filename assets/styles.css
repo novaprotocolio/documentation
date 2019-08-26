@@ -1,9 +1,26 @@
-.roundedClass > rect {
-  fill: #ff6f75 !important;
-  stroke: #9f5069 !important;
-  stroke-width: 4px;
+.roundedClass>rect {
+    fill: #ff6f75 !important;
+    stroke: #9f5069 !important;
+    stroke-width: 4px;
 }
 
 .roundedClass foreignObject {
-  color: #ffffff;
+    color: #ffffff;
+}
+
+.mediumLabel {
+    font-size: 30px !important;
+    padding: 40px!important;
+    color: #ffffff;
+}
+
+.bigLabel {
+    font-size: 40px !important;
+    padding: 100px!important;
+    color: #ffffff;
+}
+
+.mermaid.architecture .edgePath .path {
+    stroke-width: 6px!important;
+    stroke: #222222!important;
 }

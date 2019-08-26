@@ -55,6 +55,30 @@ sequenceDiagram
     end
 ```
 
+## Architecture overview
+
+```mermaid.architecture
+
+graph TB
+    a["<br/><span class='mediumLabel'>Decentralized Exchange A</span><br/><br/>"]
+    b["<br/><span class='mediumLabel'>Decentralized Exchange B</span><br/><br/>"]
+    c["<br/><span class='mediumLabel'>Decentralized Swap</span><br/><br/>"]
+    p["<br/><br/><span class='bigLabel'>Nova protocol</span><br/><br/><br/>"]
+    e["<br/><span class='mediumLabel'>Ethereum</span><br/><br/>"]
+    e1["<br/><span class='mediumLabel'>Other Chains</span><br/><br/>"]
+    style p fill:#9f5069
+    style a fill:#ff6f75
+    style b fill:#ff6f75
+    style c fill:#ff6f75
+    style e fill:#ff6f75
+    style e1 fill:#ff6f75
+    a---p
+    b---p
+    c---p
+    p---e
+    p---e1
+```
+
 ## Start orderbook protocol
 
 We have already implement orderbook as ethereum protocol and added into cmd package, so you just need to go to devnet folder.

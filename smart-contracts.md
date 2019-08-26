@@ -46,3 +46,17 @@ NAME=TriToken SYMBOL=Tri yarn deploy-token
 ---
 
 ![smart-contracts](assets/smart-contract.jpg)
+
+## Functions
+
+### What exactly does a Relayer do?
+
+Relayers provide a marketplace for traders to buy/sell tokens. They use Nova Protocol to process and complete the transactions.
+
+Relayers perform the following actions:
+
+- Collect trader orders (off-chain)
+- Manage orders and perform Price-Time Priority matching
+- When orders match, pack the details into transactions
+- Send transactions to blockchain to confirm them on-chain
+- When the blockchain completes the trade, notify the traders
