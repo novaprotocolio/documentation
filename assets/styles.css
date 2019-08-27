@@ -21,6 +21,38 @@
 }
 
 .mermaid.architecture .edgePath .path {
-    stroke-width: 6px!important;
+    stroke-width: 3px!important;
+    stroke: #222222!important;
+}
+
+.dashedRect>rect {
+    fill: #efefef;
+    stroke-dasharray: 2;
+}
+
+.dashedRect>.label foreignObject {
+    color: #777777;
+}
+
+.mermaid.orderbook .edgePath .path {
+    stroke: #222222!important;
+}
+
+.mermaid.orderbook .edgeLabel {
+    background-color: transparent !important;
+    color: #fff!important;
+}
+
+.mermaid.orderbook #OFF-CHAIN>rect {
+    /* width: 200px; */
+}
+
+.mermaid.orderbook .cluster .label foreignObject {
+    color: #ffffff!important;
+    font-weight: bold;
+}
+
+.mermaid.orderbook .cluster rect {
+    fill: #ff6f75!important;
     stroke: #222222!important;
 }
