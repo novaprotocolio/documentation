@@ -2,9 +2,17 @@
   "name": "novadocs",
   "license": "MIT",
   "scripts": {
-    "start": "yarn docsify serve ."
+    "start": "node_modules/.bin/docsify serve .",
+    "convert": "node_modules/.bin/docsify-pdf-converter"
   },
   "devDependencies": {
-    "docsify-cli": "^4.3.0"
+    "docsify-cli": "^4.3.0",
+    "docsify-pdf-converter": "^2.0.7"
+  },
+  "docsifytopdf": {
+    "contents": [ "whitepaper/_sidebar.md" ], 
+    "pathToPublic": "whitepaper.pdf", 
+    "removeTemp": true,
+    "emulateMedia": "screen"
   }
 }

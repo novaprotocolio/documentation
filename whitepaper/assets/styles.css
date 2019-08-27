@@ -1,0 +1,58 @@
+.roundedClass>rect {
+    fill: #ff6f75 !important;
+    stroke: #9f5069 !important;
+    stroke-width: 4px;
+}
+
+.roundedClass foreignObject {
+    color: #ffffff;
+}
+
+.mediumLabel {
+    font-size: 30px !important;
+    padding: 40px!important;
+    color: #ffffff;
+}
+
+.bigLabel {
+    font-size: 40px !important;
+    padding: 100px!important;
+    color: #ffffff;
+}
+
+.mermaid.architecture .edgePath .path {
+    stroke-width: 3px!important;
+    stroke: #222222!important;
+}
+
+.dashedRect>rect {
+    fill: #efefef;
+    stroke-dasharray: 2;
+}
+
+.dashedRect>.label foreignObject {
+    color: #777777;
+}
+
+.mermaid.orderbook .edgePath .path {
+    stroke: #222222!important;
+}
+
+.mermaid.orderbook .edgeLabel {
+    background-color: transparent !important;
+    color: #fff!important;
+}
+
+.mermaid.orderbook #OFF-CHAIN>rect {
+    /* width: 200px; */
+}
+
+.mermaid.orderbook .cluster .label foreignObject {
+    color: #ffffff!important;
+    font-weight: bold;
+}
+
+.mermaid.orderbook .cluster rect {
+    fill: #ff6f75!important;
+    stroke: #222222!important;
+}
