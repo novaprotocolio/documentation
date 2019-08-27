@@ -1,0 +1,3 @@
+- Whitepaper
+  - [Architecture](novalex.md)
+  - [Consensus](consensus.md)
