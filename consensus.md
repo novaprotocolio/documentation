@@ -257,5 +257,5 @@ math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
 
 #References
 
-[1]: [Ethereum Paper ](https://github.com/ethereum/wiki/wiki/White-Paper)  
+[1]: [Ethereum White Paper ](https://github.com/ethereum/wiki/wiki/White-Paper)  
 [2]
