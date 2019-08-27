@@ -1,6 +1,6 @@
 # Novalex Blockchain
 
-![architecture](assets/NovalexBlockchain.svg?sanitize=true)
+![architecture](../assets/NovalexBlockchain.svg)
 
 ### Design
 
