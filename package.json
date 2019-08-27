@@ -10,8 +10,10 @@
     "docsify-pdf-converter": "^2.0.7"
   },
   "docsifytopdf": {
-    "contents": [ "whitepaper/_sidebar.md" ], 
-    "pathToPublic": "whitepaper.pdf", 
+    "contents": [
+      "whitepaper/_sidebar.md"
+    ],
+    "pathToPublic": "whitepaper.pdf",
     "removeTemp": true,
     "emulateMedia": "screen"
   }

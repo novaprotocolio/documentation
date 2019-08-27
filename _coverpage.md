@@ -9,4 +9,4 @@
 - Multiple relayers
 
 [GitHub](https://github.com/novadex)
-[Getting Started](#quickstart)
+[Documentation](#quickstart)
