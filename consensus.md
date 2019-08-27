@@ -210,29 +210,38 @@ The random order of masternode array is then multiply with a rank array to get t
 
 ### Performance of Voting Mechanism
 
-Instead of just using the random function to choose the masternode to be the validator, we use ranking to select validator. Purpose to reduce the ability of the masternode which is less trusted to become validator.
+```mermaid.architecture
 
-Our ranking builds based on 2 factors: deposit amount and reliability of each masternode. This below is the ranking formula:
-
-```python
-nodes[i][RANKING] = 0.25 * vote_deposit_avg + 0.75 * math.sqrt(trust_avg)
+graph TB
+    a["<br/><span class='mediumLabel'>Deposit Vote</span><br/><br/>"]
+    b["<br/><span class='mediumLabel'>Trust</span><br/><br/>"]
+    c["<br/><span class='mediumLabel'>Ranking</span><br/><br/>"]
+    d["<br/><span class='mediumLabel'>Random matrix</span><br/><br/>"]
+    e["<br/><span class='mediumLabel'>Number of Epochs</span><br/><br/>"]
+    f["<br/><span class='mediumLabel'>CPU processing speed</span><br/><br/>"]
+    g["<br/><span class='mediumLabel'>Number of leader</span><br/><br/>"]
+    h["<br/><span class='mediumLabel'>Number of validator</span><br/><br/>"]
+    p["<br/><br/><span class='bigLabel'>Validator</span><br/><br/><br/>"]
+    style p fill:#9f5069
+    style a fill:#ff3333
+    style b fill:#ff3333
+    style c fill:#ff6f75
+    style d fill:#ff6f75
+    style e fill:#ffa64d
+    style f fill:#ffa64d
+    style g fill:#ffa64d
+    style h fill:#ffa64d
+    a---c
+    b---c
+    c---p
+    d---p
+    e---b
+    f---b
+    g---b
+    h---b
 ```
 
-We use weighted for 2 variables. Because we selected the leader based on the amount of deposit that is so we don't want the validator to depend too much on the deposit. Therefore we chose 0.25 for money deposit and 0.75 for trust.
-
-For deposit, we charge the deposit based on the deposit_vote of the masternode and divide for the most deposit_vote.And so is reliability.
-
-```python
-vote_deposit_avg = arr_deposit_vote[i] / deposit_max
-```
-
-And so is reliability.
-
-```python
-trust_avg = nodes[i][TRUST] / trust_max
-```
-
-In terms of reliability, we build on 4 main factors: the number of epochs that the node participates in, the CPU processing speed, the number of times to become the leader, the number of times to become the validator. As above, we rated the weight for each variable respectively 0.25, 0.1, 0.3, 0.35.
+In the Novalex protocol blockchain, instead of using the random matrix to choose the masternode to be the validator, we use **Ranking** to select validator. Purpose to reduce the ability of the masternode which is less trusted to become validator. Our ranking builds based on two factors: **Deposit amount** and **reliability** of each masternode. Because we voted the leader based on the amount of deposit so we don't want the validator to depend too much on deposit and that should focus on reliability. In order to calculate ranking for each masternode, the system use weighted for two variables and will normalize the parameters to the same scale as $[0,1]$. Specifically, we will use the deposit of the masternode divided by the most deposited masternode (deposit[i] / max_deposit) and so on with trust (trust[i] / max_trust). In terms of reliability, we build on 4 main factors: the number of epochs that the node participates in, the CPU processing speed, the number of times to become the leader, the number of times to become the validator. Finally, we **multiply** the ranking matrix with the random matrix and choose the masternode that has the highest score to become the validator there
 
 ```python
 trust = a*(nodes[i][NUMBER_OF_EPOCH]/total_epoch) + b*(

@@ -79,6 +79,32 @@ graph TB
     p---e1
 ```
 
+<hr/>
+
+```mermaid.orderbook
+graph LR
+    subgraph OFF-CHAIN
+        traders((Traders))
+    end
+    subgraph ON-CHAIN
+        relayers((Relayers))
+        multisig(Multi-Sig Wallet)
+        approval_proxy(Approval Proxy)
+        hybrid_ex(Hybrid Exchange)
+        deposit_proxy(Desposit Proxy)
+        swap_contract(Swap Contract)
+    end
+    class deposit_proxy,swap_contract dashedRect
+
+    traders-- <span style='color:black'>Place order,<br/> Cancel order </span>-->relayers
+    traders-- Approve /<br/> Disapprove -->approval_proxy
+    relayers-- Call 'matchOrders'<br/>Send orders to match -->hybrid_ex
+    multisig-- Ownership<br/><br/> -->approval_proxy
+    hybrid_ex-- Call 'transferFrom'<br/> To move funds between traders  -->approval_proxy
+    multisig-. Ownership<br/><br/> .->deposit_proxy
+    swap_contract-.->approval_proxy
+```
+
 ## Start orderbook protocol
 
 We have already implement orderbook as ethereum protocol and added into cmd package, so you just need to go to devnet folder.
