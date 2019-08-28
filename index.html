@@ -26,16 +26,16 @@
   </head>
   <body>
     <div id="app"></div>
-    <script>            
+    <script>
       var num = 0;
       mermaid.initialize({
         startOnLoad: false,
-        // allow div 
+        // allow div
         securityLevel: 'loose',
         theme: 'neutral',
         flowchart: {
-          useMaxWidth:true,
-          htmlLabels:true
+          useMaxWidth: true,
+          htmlLabels: true
         },
         cloneCssStyles: true,
         themeCSS: '.label foreignObject { font-size: 95%;overflow: visible; }'
@@ -43,7 +43,7 @@
 
       window.$docsify = {
         name: 'NovalexStarterKit',
-        basePath: location.pathname.replace(/\w+.\w+$/,''),
+        basePath: location.pathname.replace(/\w+.\w+$/, ''),
         repo: '',
         alias: {
           '/.*/_navbar.md': '/_navbar.md'
@@ -63,14 +63,16 @@
         },
         markdown: {
           renderer: {
-            code: function(code, lang) {   
-              console.log(lang)           
-              if(lang){
-                var matched = lang.match(/mermaid\.?(\w*)/)
+            code: function(code, lang) {
+              console.log(lang);
+              if (lang) {
+                var matched = lang.match(/mermaid\.?(\w*)/);
                 if (matched) {
                   num++;
                   return (
-                    '<div class="mermaid ' + matched[1] + '">' +
+                    '<div class="mermaid ' +
+                    matched[1] +
+                    '">' +
                     mermaid.render('mermaid-' + num, code) +
                     '</div>'
                   );
