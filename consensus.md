@@ -192,7 +192,6 @@ nodes.sort(key=lambda x: x[RANKING])
 **With 100 000 and 500 000 Epoch sample**  
 ![selection](assets/node_selection.png)
 
-![1 million node](assets/consensus_1m.png)
 
 ```mermaid
 sequenceDiagram
