@@ -192,7 +192,6 @@ nodes.sort(key=lambda x: x[RANKING])
 **With 100 000 and 500 000 Epoch sample**  
 ![selection](assets/node_selection.png)
 
-
 ```mermaid
 sequenceDiagram
     participant E1 as Epoch (K - 1)
@@ -243,7 +242,77 @@ graph TB
 In the Novalex protocol blockchain, instead of using the random matrix to choose the masternode to be the validator, we use **Ranking** to select validator. Purpose to reduce the ability of the masternode which is less trusted to become validator. Our ranking builds based on two factors: **Deposit amount** and **reliability** of each masternode. Because we voted the leader based on the amount of deposit so we don't want the validator to depend too much on deposit and that should focus on reliability. In order to calculate ranking for each masternode, the system use weighted for two variables and will normalize the parameters to the same scale as $[0,1]$. Specifically, we will use the deposit of the masternode divided by the most deposited masternode (deposit[i] / max_deposit) and so on with trust (trust[i] / max_trust). In terms of reliability, we build on 4 main factors: the number of epochs that the node participates in, the CPU processing speed, the number of times to become the leader, the number of times to become the validator. Finally, we **multiply** the ranking matrix with the random matrix and choose the masternode that has the highest score to become the validator there.
 
 ![1 million node](assets/consensus_1m.png)
-The line graph above compares the ranking and the number of validator of 150 masternode. Before comparing, we sort data follow the ranking in increasing direction. It is clear that the masternode has the opportunity to be the validator according to the ranking of it. On the other hand, our algorithm help the masternode which has low ranking still have change to be validator. We tested with 100000 and 50000 epoch sample, the result of line green and yellow are the same from the lowest to the highest and follow by the ranking.
+**Version 1**: The line graph above compares the ranking and the number of validator of 150 masternode. Before comparing, we sort data follow the ranking in increasing direction. It is clear that the masternode has the opportunity to be the validator according to the ranking of it. On the other hand, our algorithm help the masternode which has low ranking still have change to be validator. We tested with 100000 and 50000 epoch sample, the result of line green and yellow are the same from the lowest to the highest and follow by the ranking.
+
+**Version 2**: The line graph compares the ranking and the number of validator of 150 masternode. Before comparing, data is sorted in an upward pattern. It is clear that the masternode has the opportunity to be the validator according to its ranking. On the other hand, our algorithm helps the masternode, which has low ranking, to become a validator. We tested with 100000 and 50000 epoch samples, the result of line green and yellow are the same from the lowest to the highest and followed by the ranking.
+
+$Ranking_{i}$ = $r_{i}$
+
+**Calculating Ranking**
+
+$Ranking$ = $[r_{1},r_{2},...,r_{n}]$
+
+$$
+\begin{alignedat}{1}
+    R =
+    \begin{bmatrix}
+        r_{1} \\
+        r_{2} \\
+        \vdots \\
+        r_{n-1} \\
+        r_{n}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        v^{\prime}_1 & \sqrt{t^{\prime}_1} \\
+        v^{\prime}_2 & \sqrt{t^{\prime}_2} \\
+        \vdots & \vdots \\
+        v^{\prime}_{n-1} & \sqrt{t^{\prime}_{n-i}} \\
+        v^{\prime}_n & \sqrt{t^{\prime}_n}
+    \end{bmatrix}
+    \begin{bmatrix}
+        \alpha & (1-\alpha) \\
+    \end{bmatrix} \;\;\;\;\;\;\;\;\;\;\;\;\;\;(1) \\ \;
+\end{alignedat}
+$$
+
+**Normalization Vote Deposit**
+
+$v^{\prime}_i$ = $\frac{VoteDeposit_{i} - VoteDeposit_{min}}{VoteDeposit_{max} - VoteDeposit_{min}}$ where $i \in [1,...,n]$
+
+**Normalization trust**
+
+$t^{\prime}_i$ = $\frac{Trust_{i} - Trust_{min}}{Trust_{max} - Trust_{min}}$ where $i \in [1,...,n]$
+
+**Calcurlating trust**
+
+$$
+\begin{alignedat}{1}
+    T =
+    \begin{bmatrix}
+        t_{1} \\
+        t_{2} \\
+        \vdots \\
+        t_{n-1} \\
+        t_{n}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        epoch_1 & speed_1 & leader_1 & validator_1 \\
+        epoch_2 & speed_2 & leader_2 & validator_2 \\
+        \vdots & \vdots & \vdots & \vdots \\
+        epoch_{n-1} & speed_{n-1} & leader_{n-1} & validator_{n-1} \\
+        epoch_n & speed_n & leader_n & validator_n \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \alpha & \beta & \gamma & \delta \\
+    \end{bmatrix} \;\;\;\;\;\;\;\;\;\;\;\;\;\;(1) \\ \;
+\end{alignedat}
+$$
+
+ranking coefficient (r)
+
+trust (t)
+
+vote_deposit (v)
 
 # Application
 
@@ -255,5 +324,11 @@ The line graph above compares the ranking and the number of validator of 150 mas
 
 #References
 
-[1]: [Ethereum White Paper ](https://github.com/ethereum/wiki/wiki/White-Paper)  
+[1]: [Ethereum White Paper ](https://github.com/ethereum/wiki/wiki/White-Paper)
 [2]
+
+$$
+$$
+
+$$
+$$
