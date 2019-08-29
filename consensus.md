@@ -192,7 +192,6 @@ nodes.sort(key=lambda x: x[RANKING])
 **With 100 000 and 500 000 Epoch sample**  
 ![selection](assets/node_selection.png)
 
-
 ```mermaid
 sequenceDiagram
     participant E1 as Epoch (K - 1)
@@ -249,6 +248,8 @@ In the Novalex protocol blockchain, instead of using the random matrix to choose
 
 $Ranking_{i}$ = $r_{i}$
 
+**Calculating Ranking**
+
 $Ranking$ = $[r_{1},r_{2},...,r_{n}]$
 
 $$
@@ -262,24 +263,55 @@ $$
         r_{n}
     \end{bmatrix} =
     \begin{bmatrix}
-        v_1(norm) & \sqrt{t_1(norm)} \\
-        r_2(norm) & \sqrt{t_2(norm)} \\
+        v^{\prime}_1 & \sqrt{t^{\prime}_1} \\
+        v^{\prime}_2 & \sqrt{t^{\prime}_2} \\
         \vdots & \vdots \\
-        r_{n-1}(norm) & \sqrt{t_{n-1}(norm)} \\
-        r_n(norm) & \sqrt{t_n(norm)}
+        v^{\prime}_{n-1} & \sqrt{t^{\prime}_{n-i}} \\
+        v^{\prime}_n & \sqrt{t^{\prime}_n}
     \end{bmatrix}
     \begin{bmatrix}
         \alpha & (1-\alpha) \\
-    \end{bmatrix} \;\;\;\;\;\;\;\;\;\;\;\;\;\;(1) \\ \; \\ \; \\
+    \end{bmatrix} \;\;\;\;\;\;\;\;\;\;\;\;\;\;(1) \\ \;
 \end{alignedat}
 $$
 
-$v_i(norm)$ = $\frac{VoteDeposit_{i} - VoteDeposit_{min}}{VoteDeposit_{max} - VoteDeposit_{min}}$ where $i \in [1,...,n]$
+**Normalization Vote Deposit**
 
-$t_i(norm)$ = $\frac{Trust_{i} - Trust_{min}}{Trust_{max} - Trust_{min}}$ where $i \in [1,...,n]$
+$v^{\prime}_i$ = $\frac{VoteDeposit_{i} - VoteDeposit_{min}}{VoteDeposit_{max} - VoteDeposit_{min}}$ where $i \in [1,...,n]$
+
+**Normalization trust**
+
+$t^{\prime}_i$ = $\frac{Trust_{i} - Trust_{min}}{Trust_{max} - Trust_{min}}$ where $i \in [1,...,n]$
+
+**Calcurlating trust**
+
+$$
+\begin{alignedat}{1}
+    T =
+    \begin{bmatrix}
+        t_{1} \\
+        t_{2} \\
+        \vdots \\
+        t_{n-1} \\
+        t_{n}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        epoch_1 & speed_1 & leader_1 & validator_1 \\
+        epoch_2 & speed_2 & leader_2 & validator_2 \\
+        \vdots & \vdots & \vdots & \vdots \\
+        epoch_{n-1} & speed_{n-1} & leader_{n-1} & validator_{n-1} \\
+        epoch_n & speed_n & leader_n & validator_n \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \alpha & \beta & \gamma & \delta \\
+    \end{bmatrix} \;\;\;\;\;\;\;\;\;\;\;\;\;\;(1) \\ \;
+\end{alignedat}
+$$
 
 ranking coefficient (r)
+
 trust (t)
+
 vote_deposit (v)
 
 # Application
