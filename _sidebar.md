@@ -1,19 +1,25 @@
-- Getting started
+- Research Paper
 
-  - [Development](setup-dev-env.md)
-  - [Novalex chain](novalex.md)
-  - [Change network](change-network.md)
+  - [White Paper](white-paper.md)
 
-- Relayers
+* Development
 
-  - [Configuration](admin-cli.md)
-  - [Deployment](config-nginx.md)
-  - [Admin APIs](admin-api.md)
+  - Getting started
 
-- Protocols
+    - [Development](setup-dev-env.md)
+    - [Novalex chain](novalex.md)
+    - [Change network](change-network.md)
 
-  - [Consensus](consensus.md)
-  - [Orderbook](orderbook-protocol.md)
-  - [Smart Contracts](smart-contracts.md)
+  - Relayers
 
-- [Changelog](change-log.md)
+    - [Configuration](admin-cli.md)
+    - [Deployment](config-nginx.md)
+    - [Admin APIs](admin-api.md)
+
+  - Protocols
+
+    - [Consensus](consensus.md)
+    - [Orderbook](orderbook-protocol.md)
+    - [Smart Contracts](smart-contracts.md)
+
+* [Changelog](change-log.md)
