@@ -300,6 +300,20 @@ math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
 
 ### Financial Services: Decentralised Exchange
 
+Novadex is a decentralized exchange protocol based on the TomoChain blockchain infrastructure that is built into the core of Novalex blockchain. That means Relayers do not have to worry about the decentralized protocol, or creating their own off-chain orderbook.
+
+#### Advantages of Novadex protocol
+
+- **Liquidity** : With novadex, there is only one tradable orderbook for every token, so coin holders do not have to deposit their tokens on multiple exchanges. And your trade history will be the same whether you are on the popular exchange or not.
+
+- **Full decentralization** : The orderbook database, matching engine, and trade execution mechanism are decentralized.
+
+- **Security** : Because the tokens are not stored centralized, if the relayer you are trading on disappear, you have no problem continue trading on other relayers. Beside that, using the same token can help traders avoid depositing their assets.
+
+#### Incentives for Relayer operators
+
+- Masternodes obtain incentives for doing the computation of order matching and trade execution. Another incentive is that relayer's operators can obtain the incentives via adding fees to the settlement smart contracts.
+
 ### Financial Services: KYC and AML Application
 
 # Conclusion
