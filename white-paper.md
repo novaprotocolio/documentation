@@ -310,6 +310,8 @@ Novadex is a decentralized exchange protocol based on the TomoChain blockchain i
 
 - **Security** : Because the tokens are not stored centralized, if the relayer you are trading on disappear, you have no problem continue trading on other relayers. Beside that, using the same token can help traders avoid depositing their assets.
 
+Nova is a decentralized exchange protocol based on the Novalex blockchain infrastructure that will be integrated into the core Novalex blockchain consensus layer. Typically how decentralized exchanges work is they function on smart contracts that help execute actions users want to make. However, DEXs built on the Nova protocol will be able to bypass the need to create smart contracts in order to build decentralized order books. This is because with Nova, masternodes in the Novalex ecosystem will be the ones managing the order book database, matching engine, and trade execution mechanism. This means that decentralized exchanges built for Novalex using the Nova Protocol will not need to spend time and money creating as well as auditing their smart contracts but can instead use their funds to market their exchange and build out a good user interface. Moreover The first decentralized exchange platform on Novalex i.e NovaSwap: Instant Swap with The fastest, simplest and most secure way to exchange tokens. NovaSwap will focus on both user friendliness to end users and liquidity for future financial applications.
+
 #### Incentives for Relayer operators
 
 - Masternodes obtain incentives for doing the computation of order matching and trade execution. Another incentive is that relayer's operators can obtain the incentives via adding fees to the settlement smart contracts.
