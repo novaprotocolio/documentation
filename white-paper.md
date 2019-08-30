@@ -1,13 +1,22 @@
 # Abstract
-
-We introduce a new blockchain architecture and concept that is practical in terms of operability, scalable and economically sensible. Novalex blockchain is a public EVM-compatible blockchain that focuses on maintaining an instantaneous confirmation time, high level of security and a sensible compensation scheme. We used a ranking proof of stake consensus for increased security and fast confrimation. Our ranking-bias voting mechanism provides a fair compensation scheme for our masternodes, thus encouraging each masternode to improve on its stake and performance for maximum compensation. This benefits the entire ecosystem through healthy competition and high masternode engagement. Using our robust ecosystem, we eventually aim to built practical decentralised applications that will generate a revenue stream for our coin holders providing immediate dividends unlike an Equity underlying which normally pay quaterly dividends. We do so in an environment where decision making is dencentralised unlike the current norm where power in concentrated in a single agency. This will greatly help the cryptocurrency ecosystem by conceptually bringing it closer to mainstream finance and ultimately gaining institutional acceptance in a new world where decentralised 
+We introduce a new blockchain architecture and concept that is practical in terms of operability, scalable and economically sensible. Novalex blockchain is a public EVM-compatible blockchain that focuses on maintaining an instantaneous confirmation time, high level of security and a sensible low-fee, high volume compensation scheme. We use a ranking proof of stake voting consensus for increased security and fast confirmation. Our ranking-bias voting mechanism provides a fair compensation scheme for our masternodes, thus encouraging each masternode to improve on its stake and performance for maximum compensation. This benefits the entire ecosystem through healthy competition and high masternode engagement. Using our robust ecosystem, we eventually aim to built practical decentralised applications that will generate a revenue stream for our coin holders providing immediate dividends unlike an Equity underlying which normally pay quaterly dividends. We do so in an environment where decision making is decentralised unlike the current norm where power in concentrated in a single agency. This will greatly help the blockchain ecosystem by conceptually bringing it closer to mainstream business and finance, facilitating the evolution to create a decentralised economic hinterland where power is shared rather concentrated in agency.
 
 # Introduction
+The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain architecture that is pushing the boundaries of decentralisation. Our focus is not only on building the underlying blockchain technology. We also leverage the technology to build useful DApps that transcends the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying albeit in a different time scale. Our token will then used as a medium for reward, payment or transactions  [link][1]
 
-The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain architecture that is pushing the boundaries of decentralisation. Our focus is not only on buiding the underlying blockchain technology. We also leverage the technology to build useful DApps that transcends the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying. [link][1]
+Bitcoin was created in 2008 when Satoshi Nakamoto         
+
+## A World of Centralised Institutions
+The argument with respect to the benefits and detriments of centralisation vs decentralisation has been evolving for centuries. The studies of Social and Behavioral Sciences with respect to these structures of society is well studied and documented. Since the Neolithic Age, human or its ancestors have began a period of centralisation. Communities became cities and cities became empires. As people came together it became more difficult to maintain trust and harmony, leading to a collaspe of society, hence arises a need to form central institutions of governance and gatekeepers. 
+
+## A Decentralised Future
 
 # Architecture
-# Novalex Blockchain
+
+
+
+
+## Novalex Blockchain
 
 ![architecture](assets/NovalexBlockchain.svg?sanitize=true)
 
@@ -38,6 +47,8 @@ After 600 blocks, a checkpoint block is created, the masternode who takes turn i
 - 10% goes to development funding account.
 
 Novalex has a built-in orderbook engine so that relayers can launch a decentralized exchange without maintaining an off-chain database.
+
+### Smart Contract
 
 ### Reward Mechanism
 
@@ -297,7 +308,12 @@ math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
 
 # Conclusion
 
+# Appendix 1
+Novalex Decentralised Cryptocurrency Exchange
+
 #References
+   
 
 [1]: [Ethereum White Paper ](https://github.com/ethereum/wiki/wiki/White-Paper)  
-[2]
+[2]: [Evolving from Decentralization to Centralization ](https://hackernoon.com/evolving-from-decentralization-to-centralization-33e7db8aadd2)
+[3]: [Bitcoin: A Peer-to-Peer Electronic Cash System](https://bitcoin.org/bitcoin.pdf)
