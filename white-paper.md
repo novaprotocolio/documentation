@@ -302,7 +302,7 @@ math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
 
 Novadex is a decentralized exchange protocol based on the TomoChain blockchain infrastructure that is built into the core of Novalex blockchain. That means Relayers do not have to worry about the decentralized protocol, or creating their own off-chain orderbook.
 
-#### Advantages of Novadex protocol
+#### Advantages of Decentralized Exchange
 
 - **Liquidity** : With novadex, there is only one tradable orderbook for every token, so coin holders do not have to deposit their tokens on multiple exchanges. And your trade history will be the same whether you are on the popular exchange or not.
 
@@ -313,6 +313,10 @@ Novadex is a decentralized exchange protocol based on the TomoChain blockchain i
 #### Incentives for Relayer operators
 
 - Masternodes obtain incentives for doing the computation of order matching and trade execution. Another incentive is that relayer's operators can obtain the incentives via adding fees to the settlement smart contracts.
+
+#### How orderbook is stored decentralized
+
+- Orderbook engine can be store as a single Red-Black Tree in ethereum blockchain. Due to the unpredictable size, we map each dynamically sized Orderbook with a region of consecutive blocks in storage, start from slot=keccak256(pair_id). Each orderbook is a pair of 2 order tree, Bids and Asks. Each order tree is a red black tree of Price item. And each price is linked to a list of Orders that have that same price. Because every slot is collion avoidable by using crypto hashes algorithm, we can flat them into one and only state database with just simple key/value operations, and therefore we can easy synchronize the snapshot of the orderbook across multiple masternodes.
 
 ### Financial Services: KYC and AML Application
 
