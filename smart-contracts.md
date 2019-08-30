@@ -63,6 +63,8 @@ Relayers perform the following actions:
 
 ## Concept of Smart Contracts - 01
 
+https://ieeexplore.ieee.org/abstract/document/7467408
+
 Nick Szabo introduced this concept in 1994 and defined a smart contract as “a computerized transaction protocol that executes the terms of a contract” [44]. Szabo suggested translating contractual clauses (collateral, bonding, etc.) into code, and embedding them into property (hardware, or software) that can self-enforce them [45], so as to minimize the need for trusted intermediaries between transacting parties, and the occurence of malicious or accidental exceptions.
 
 Within the blockchain context, smart contracts are scripts stored on the blockchain. (They can be thought of as roughly analogous to stored procedures in relational database management systems [46].) Since they reside on the chain, they have a unique address. We trigger a smart contract by addressing a transaction to it. It then executes independently and automatically in a prescribed manner on every node in the network, according to the data that was included in the triggering transaction. (This implies that every node in a smart contract-enabled blockchain is running a virtual machine (VM), and that the blockchain network acts as a distributed VM.)
@@ -99,6 +101,8 @@ We close this section by noting that smart contracts also give rise to the conce
 
 ## Concept of Smart Contracts - 02
 
+https://github.com/ethereumbook/ethereumbook/blob/develop/07smart-contracts-solidity.asciidoc#contract_reg
+
 The term smart contract has been used over the years to describe a wide variety of different things. In the 1990s, cryptographer Nick Szabo coined the term and defined it as “a set of promises, specified in digital form, including protocols within which the parties perform on the other promises.” Since then, the concept of smart contracts has evolved, especially after the introduction of decentralized blockchain platforms with the invention of Bitcoin in 2009. In the context of Ethereum, the term is actually a bit of a misnomer, given that Ethereum smart contracts are neither smart nor legal contracts, but the term has stuck. In this book, we use the term “smart contracts” to refer to immutable computer programs that run deterministically in the context of an Ethereum Virtual Machine as part of the Ethereum network protocol—i.e., on the decentralized Ethereum world computer.
 
 Let’s unpack that definition:
@@ -124,6 +128,8 @@ Smart contracts operate with a very limited execution context. They can access t
 The EVM runs as a local instance on every Ethereum node, but because all instances of the EVM operate on the same initial state and produce the same final state, the system as a whole operates as a single "world computer."
 
 ## Concept of Smart Contracts - 03
+
+https://blockgeeks.com/guides/smart-contracts/#Smart_Contracts_are_Awesome
 
 ### Introduction
 
