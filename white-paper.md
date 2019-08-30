@@ -1,5 +1,10 @@
 # Abstract
+<<<<<<< HEAD
 We introduce a new blockchain architecture and concept that is practical in terms of operability, scalable and economically sensible. Novalex blockchain is a public EVM-compatible blockchain that focuses on maintaining an instantaneous confirmation time, high level of security and a sensible low-fee, high volume compensation scheme. We use a ranking proof of stake voting consensus for increased security and fast confirmation. Our ranking-bias voting mechanism provides a fair compensation scheme for our masternodes, thus encouraging each masternode to improve on its stake and performance for maximum compensation. This benefits the entire ecosystem through healthy competition and high masternode engagement. Using our robust ecosystem, we eventually aim to built practical decentralised applications that will generate a revenue stream for our coin holders providing immediate dividends unlike an Equity underlying which normally pay quaterly dividends. We do so in an environment where decision making is decentralised unlike the current norm where power in concentrated in a single agency. This will greatly help the blockchain ecosystem by conceptually bringing it closer to mainstream business and finance, facilitating the evolution to create a decentralised economic hinterland where power is shared rather concentrated in agency.
+=======
+
+We introduce a new blockchain architecture and concept that is practical in terms of operability, scalable and economically sensible. Novalex blockchain is a public EVM-compatible blockchain that focuses on maintaining an instantaneous confirmation time, high level of security and a sensible compensation scheme. We used a ranking proof of stake consensus for increased security and fast confrimation. Our ranking-bias voting mechanism provides a fair compensation scheme for our masternodes, thus encouraging each masternode to improve on its stake and performance for maximum compensation. This benefits the entire ecosystem through healthy competition and high masternode engagement. Using our robust ecosystem, we eventually aim to built practical decentralised applications that will generate a revenue stream for our coin holders providing immediate dividends unlike an Equity underlying which normally pay quaterly dividends. We do so in an environment where decision making is dencentralised unlike the current norm where power in concentrated in a single agency. This will greatly help the cryptocurrency ecosystem by conceptually bringing it closer to mainstream finance and ultimately gaining institutional acceptance in a new world where decentralised
+>>>>>>> e49955b8e707274a45f7c25ebc6f62bded9e3b04
 
 # Introduction
 The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain architecture that is pushing the boundaries of decentralisation. Our focus is not only on building the underlying blockchain technology. We also leverage the technology to build useful DApps that transcends the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying albeit in a different time scale. Our token will then used as a medium for reward, payment or transactions  [link][1]
@@ -13,10 +18,14 @@ The argument with respect to the benefits and detriments of centralisation vs de
 
 # Architecture
 
+<<<<<<< HEAD
 
 
 
 ## Novalex Blockchain
+=======
+# Novalex Blockchain
+>>>>>>> e49955b8e707274a45f7c25ebc6f62bded9e3b04
 
 ![architecture](assets/NovalexBlockchain.svg?sanitize=true)
 
@@ -54,8 +63,6 @@ Novalex has a built-in orderbook engine so that relayers can launch a decentrali
 
 # Ranking Proof Of Stake Consensus
 
-# New Section
-
 ```mermaid
 graph TB
     A(New epoch) -->|MOST-VOTED| B(First validator)
@@ -74,6 +81,14 @@ graph TB
 
     class A,E roundedClass
 ```
+
+### Randomness in blockchain
+
+Consensus protocols are actually random number generators, but public blockchains rely on a way to determine the next producers. This election process should have 3 properties:
+
+1. Fairness: anyone can have a chance at creating a block, but proportional to some effort invested.
+2. Incentive-based: Participant should gain a advantage from being chosen as the block producer and be incentivized to be honestly.
+3. Non-determinism: The next block producer should not be known in advance.
 
 ### Consensus Protocol
 
@@ -303,6 +318,20 @@ math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
 # Application
 
 ### Financial Services: Decentralised Exchange
+
+Novadex is a decentralized exchange protocol based on the TomoChain blockchain infrastructure that is built into the core of Novalex blockchain. That means Relayers do not have to worry about the decentralized protocol, or creating their own off-chain orderbook.
+
+#### Advantages of Novadex protocol
+
+- **Liquidity** : With novadex, there is only one tradable orderbook for every token, so coin holders do not have to deposit their tokens on multiple exchanges. And your trade history will be the same whether you are on the popular exchange or not.
+
+- **Full decentralization** : The orderbook database, matching engine, and trade execution mechanism are decentralized.
+
+- **Security** : Because the tokens are not stored centralized, if the relayer you are trading on disappear, you have no problem continue trading on other relayers. Beside that, using the same token can help traders avoid depositing their assets.
+
+#### Incentives for Relayer operators
+
+- Masternodes obtain incentives for doing the computation of order matching and trade execution. Another incentive is that relayer's operators can obtain the incentives via adding fees to the settlement smart contracts.
 
 ### Financial Services: KYC and AML Application
 
