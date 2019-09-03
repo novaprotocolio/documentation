@@ -279,7 +279,7 @@ $$
 
 $v^{\prime}_i$ = $\frac{VoteDeposit_{i} - VoteDeposit_{min}}{VoteDeposit_{max} - VoteDeposit_{min}}$ where $i \in [1,...,n]$
 
-**Normalization trust**
+**Normalization Trust**
 
 $t^{\prime}_i$ = $\frac{Trust_{i} - Trust_{min}}{Trust_{max} - Trust_{min}}$ where $i \in [1,...,n]$
 
