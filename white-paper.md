@@ -12,6 +12,9 @@ The cryptocurrency market has seen its share of bust and boom. The entire ecosys
 
 ![architecture](assets/NovalexBlockchain.svg?sanitize=true)
 
+What is Novalex Blockchain?
+Blockchain is a decentralized distributed database or ledger. What decentralization means that the application or service continues to be availabel and usable even if a server or a group of servers on a network crashes or are not available. Distributed means that any server or node on the network is connected to every other node directly or indirectly.
+
 ### Design
 
 Novalex is a public EVM-compartible blockchain that allows you to create blocks within 1 second, with some advantanges:
@@ -302,6 +305,35 @@ math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
 
 Novadex is a decentralized exchange protocol based on the TomoChain blockchain infrastructure that is built into the core of Novalex blockchain. That means Relayers do not have to worry about the decentralized protocol, or creating their own off-chain orderbook.
 
+The potential solution to the dominance of centralized cryptocurrency
+exchanges is the decentralized exchange or the decentralized exchange
+protocols (DEXs).
+These solutions are trying to build peer-to-peer marketplaces
+between users directly & anonymously. Some try to take ideas from the
+structure of centralized exchanges and add decentralized elements, while
+others take a more radical peer-to-peer approach in the decentralization
+of digital asset trading. Most adopt the concept of an order book in their
+design decision while some embrace a more peer-to-peer alternative
+of directly swapping assets with others. An element which all of the
+decentralized exchanges share is their non-custodial nature. Users remain
+in control of their funds only while trading on these platforms. Leveraging
+the potential of smart contracts, users only give away control over their
+funds once the trade has been executed. Currently, a common limitation
+of decentralized exchanges is low levels of liquidity given that most trades
+are still done on centralized exchanges.
+
+#### Centralized Exchange
+
+Fast forward to 2018 and traditional centralized models of custodianship
+remain the dominant form of storing and exchanging digital assets.
+The vast majority of digital tokens are currently stored on centralized
+exchanges. The old structures of centralized store and exchange of value
+seem to have persisted culturally as well as technically. The development
+of robust exchange platforms has become critical to advancing the
+tokenized economy. As the cryptocurrency market goes mainstream,
+there is massive demand on exchanges to quickly and securely facilitate
+digital asset trading for the masses.
+
 #### Advantages of Decentralized Exchange
 
 - **Liquidity** : With novadex, there is only one tradable orderbook for every token, so coin holders do not have to deposit their tokens on multiple exchanges. And your trade history will be the same whether you are on the popular exchange or not.
@@ -310,11 +342,38 @@ Novadex is a decentralized exchange protocol based on the TomoChain blockchain i
 
 - **Security** : Because the tokens are not stored centralized, if the relayer you are trading on disappear, you have no problem continue trading on other relayers. Beside that, using the same token can help traders avoid depositing their assets.
 
-Nova is a decentralized exchange protocol based on the Novalex blockchain infrastructure that will be integrated into the core Novalex blockchain consensus layer. Typically how decentralized exchanges work is they function on smart contracts that help execute actions users want to make. However, DEXs built on the Nova protocol will be able to bypass the need to create smart contracts in order to build decentralized order books. This is because with Nova, masternodes in the Novalex ecosystem will be the ones managing the order book database, matching engine, and trade execution mechanism. This means that decentralized exchanges built for Novalex using the Nova Protocol will not need to spend time and money creating as well as auditing their smart contracts but can instead use their funds to market their exchange and build out a good user interface. Moreover The first decentralized exchange platform on Novalex i.e NovaSwap: Instant Swap with The fastest, simplest and most secure way to exchange tokens. NovaSwap will focus on both user friendliness to end users and liquidity for future financial applications.
-
 #### Incentives for Relayer operators
 
 - Masternodes obtain incentives for doing the computation of order matching and trade execution. Another incentive is that relayer's operators can obtain the incentives via adding fees to the settlement smart contracts.
+
+#### Why chosing our decentralized exchange?
+
+Our decentralized models offer several advantages over others,
+including, but not limited to the following:
+
+- Clean and easy-to-use interface offers simple solutions for
+  different transactions. Other systems offer a variety of functions,
+  varying in difficulty, but ours is the most user-friendly and the
+  easiest to use. This is not something that is a characteristic of
+  decentralized exchanges, but our engineers have worked hard
+  and succeeded in creating a UX (user interface) that is a pleasure
+  to work with. We built a great collection of components based on React framework.
+
+- A place of trading that offers a wide and easy overview. The order
+  books and trades can be put in ascending / descending order
+  based on volume, price, date, and quality.
+
+- An unbelievably easy-to-use wallet - this function offers
+  transaction both from and to address to the exchange. You can
+  see all your balances in one place, without having to switch from
+  one work session to another.
+
+- Decentralization and the speed of currency transfer: Exchange is independent from financial institutions such as banks, and happened across muliple nodes. It uses a decentralized database, which is immune to any
+  manipulation. Transfers are being booked immediately, making
+  the express transfers possible, without the need of third parties.
+  With digital currencies exchanges like ours, buyers and sellers
+  are immediately connected. In the case of fiat currencies, we are
+  dependent on the time of posting funds in banks
 
 #### How orderbook is stored decentralized
 
