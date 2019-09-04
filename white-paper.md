@@ -383,6 +383,18 @@ including, but not limited to the following:
 
 # Conclusion
 
+# Appendix
+
+What means "decentralized" exchange
+
+In the exchange world, "decentralized" exchange is where funds are not safe-guarded by centralized entities. No need for trust, no central clearing authority, some privacy, no Big Brother watching, low transfer fees.
+
+One of the meaning of blockchain is security, but, in a centralized exchange, exchange market holder can hold your wallet, setup price, fee.. so what is the problem if the exchanges are hacked? In 2018, over \$1.5 billion of crypto has been stolen from centralised cryptocurrency exchanges. Vitalik Buterin stating that he hopes “centralised exchanges go burn in hell as much as possible” and cryptocurrency pioneer Nick Szabo calling trusted third parties “security holes”
+
+Blockchain meaning is not involed any third parties, so decentralized exchange will be next big thing.
+
+For the futures, decentralized exchange can apply for digital assets, stock..
+
 #References
 
 [1]: [Ethereum White Paper ](https://github.com/ethereum/wiki/wiki/White-Paper)  
