@@ -168,3 +168,73 @@ Importantly, contracts only run if they are called by a transaction. All smart c
 Transactions are atomic, regardless of how many contracts they call or what those contracts do when called. Transactions execute in their entirety, with any changes in the global state (contracts, accounts, etc.) recorded only if all execution terminates successfully. Successful termination means that the program executed without an error and reached the end of execution. If execution fails due to an error, all of its effects (changes in state) are “rolled back” as if the transaction never ran. A failed transaction is still recorded as having been attempted, and the ether spent on gas for the execution is deducted from the originating account, but it otherwise has no other effects on contract or account state.
 
 As mentioned previously, it is important to remember that a contract’s code cannot be changed. However, a contract can be “deleted,” removing the code and its internal state (storage) from its address, leaving a blank account. Any transactions sent to that account address after the contract has been deleted do not result in any code execution, because there is no longer any code there to execute. To delete a contract, you execute an EVM opcode called SELFDESTRUCT (previously called SUICIDE). That operation costs “negative gas,” a gas refund, thereby incentivizing the release of network client resources from the deletion of stored state. Deleting a contract in this way does not remove the transaction history (past) of the contract, since the blockchain itself is immutable. It is also important to note that the SELFDESTRUCT capability will only be available if the contract author programmed the smart contract to have that functionality. If the contract’s code does not have a SELFDESTRUCT opcode, or it is inaccessible, the smart contract cannot be deleted.
+
+## Architecture overview
+
+```mermaid.orderbook
+graph LR
+    subgraph OFF-CHAIN
+        traders((Traders))
+    end
+    subgraph ON-CHAIN
+        relayers((Relayers))
+        multisig(Multi-Sig Wallet)
+        approval_proxy(Approval Proxy)
+        hybrid_ex(Hybrid Exchange)
+        deposit_proxy(Desposit Proxy)
+        swap_contract(Swap Contract)
+    end
+    class deposit_proxy,swap_contract dashedRect
+
+    traders-- <span style='color:black'>Place order,<br/> Cancel order </span>-->relayers
+    traders-- Approve /<br/> Disapprove -->approval_proxy
+    relayers-- Call 'matchOrders'<br/>Send orders to match -->hybrid_ex
+    multisig-- Ownership<br/><br/> -->approval_proxy
+    hybrid_ex-- Call 'transferFrom'<br/> To move funds between traders  -->approval_proxy
+    multisig-. Ownership<br/><br/> .->deposit_proxy
+    swap_contract-.->approval_proxy
+```
+
+The following descriptions provide specific details on each segment of the smart contract architecture.
+
+## Hybrid Exchange
+
+The Hybrid Exchange contract is at the core of the entire protocol. It handles the matching and cancellation of orders.
+
+Specifically, the bulk of the exchange logic resides in the public method matchOrders, which:
+
+- Checks signatures and verifies the integrity of orders
+- Computes the resulting state that would occur as a result of matching the passed in orders via a set of limit exchange matching engine rules
+- Delegates the actual settlement (a set of token transfers) to the Proxy
+
+## Proxy
+
+The Proxy contract is primarily designed to perform ERC20 to ERC20 token swaps. It is responsible for actually settling the results of matching orders. The Engine (Hybrid Exchange) delegates this key functionality to Proxy. One advantage of using the proxy contract for this is that it allows the Exchange contract to be upgraded without requiring users to waste gas on re-approvals and break the flow of the exchange.
+
+The Proxy contract is built to have two primary methods of settlement: approval and depository. Approval is the default methodology.
+
+### Approval Proxy
+
+ERC20 defines the **allowance** and **transferFrom** interfaces, and a user can pre-authorize a certain amount of transfer rights to the NovelexProxy address. In this way, NovelexProxy has the authority to transfer the user's assets under specified conditions.
+
+In this mode, when a user places an order, the user's actual assets remain in their own address and can be freely controlled at any time until the order is matched (no deposit). Once an order is matched, the proxy contract then executes a transaction that transfers the assets of the trade. Each party of the trade receives their new assets in their address directly (no withdraw).
+
+### Depository Proxy
+
+Since there is no requirement for **allowance** and **transferFrom**, the Depository Proxy has greater flexibility than the Approval Proxy and is not limited to transactions between ERC20. The Depository Proxy can support Eth directly.
+
+Before trading, the trader needs to deposit the corresponding currency into the Depository Proxy before placing an order. After a transaction occurs, the assets obtained from the transaction will be logically transferred in the proxy. When the user needs to use this part of the assets, they need to withdraw them from the Depository Proxy to their own address.
+
+## MultiSigWallet
+
+The Novelex Proxy is responsible for hosting the user's assets, so a strict mechanism is needed to keep the user's assets safe. Only a strictly audited, logically correct contract can be added into proxy whitelist. Only addresses in this whitelist can execute trades and transfer user assets.
+
+The ability to add addresses to the proxy whitelist is controlled by MultiSigWallet. MultiSigWallet requires multiple owners to authorize and can perform authorization operations after a 14-day lockout period.
+
+MultiSigWallet is autonomous by the community.
+
+## Swap Handler Contract
+
+The Swap contract provides an easier, but more restrictive way to exchange tokens. The Swap Contract still uses the same Proxy contract for token allowance, but it is completely separate from the Hybrid Exchange contract.
+
+A user or a contract can take an offline swap order by calling the Swap Contract directly. The exchange process is atomical. It doesn't require an offline matching engine. It is designed to be used to build more lightweight products, such as trading widgets. It can also be used for some others contracts like dydx which need on-chain liquidity.

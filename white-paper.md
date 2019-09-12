@@ -29,6 +29,9 @@ The argument with respect to the benefits and detriments of centralisation vs de
 
 ![architecture](assets/NovalexBlockchain.svg?sanitize=true)
 
+What is Novalex Blockchain?
+Blockchain is a decentralized distributed database or ledger. What decentralization means that the application or service continues to be availabel and usable even if a server or a group of servers on a network crashes or are not available. Distributed means that any server or node on the network is connected to every other node directly or indirectly.
+
 ### Design
 
 Novalex is a public EVM-compartible blockchain that allows you to create blocks within 1 second, with some advantanges:
@@ -321,7 +324,36 @@ math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
 
 Novadex is a decentralized exchange protocol based on the TomoChain blockchain infrastructure that is built into the core of Novalex blockchain. That means Relayers do not have to worry about the decentralized protocol, or creating their own off-chain orderbook.
 
-#### Advantages of Novadex protocol
+The potential solution to the dominance of centralized cryptocurrency
+exchanges is the decentralized exchange or the decentralized exchange
+protocols (DEXs).
+These solutions are trying to build peer-to-peer marketplaces
+between users directly & anonymously. Some try to take ideas from the
+structure of centralized exchanges and add decentralized elements, while
+others take a more radical peer-to-peer approach in the decentralization
+of digital asset trading. Most adopt the concept of an order book in their
+design decision while some embrace a more peer-to-peer alternative
+of directly swapping assets with others. An element which all of the
+decentralized exchanges share is their non-custodial nature. Users remain
+in control of their funds only while trading on these platforms. Leveraging
+the potential of smart contracts, users only give away control over their
+funds once the trade has been executed. Currently, a common limitation
+of decentralized exchanges is low levels of liquidity given that most trades
+are still done on centralized exchanges.
+
+#### Centralized Exchange
+
+Fast forward to 2018 and traditional centralized models of custodianship
+remain the dominant form of storing and exchanging digital assets.
+The vast majority of digital tokens are currently stored on centralized
+exchanges. The old structures of centralized store and exchange of value
+seem to have persisted culturally as well as technically. The development
+of robust exchange platforms has become critical to advancing the
+tokenized economy. As the cryptocurrency market goes mainstream,
+there is massive demand on exchanges to quickly and securely facilitate
+digital asset trading for the masses.
+
+#### Advantages of Decentralized Exchange
 
 - **Liquidity** : With novadex, there is only one tradable orderbook for every token, so coin holders do not have to deposit their tokens on multiple exchanges. And your trade history will be the same whether you are on the popular exchange or not.
 
@@ -333,12 +365,59 @@ Novadex is a decentralized exchange protocol based on the TomoChain blockchain i
 
 - Masternodes obtain incentives for doing the computation of order matching and trade execution. Another incentive is that relayer's operators can obtain the incentives via adding fees to the settlement smart contracts.
 
+#### Why chosing our decentralized exchange?
+
+Our decentralized models offer several advantages over others,
+including, but not limited to the following:
+
+- Clean and easy-to-use interface offers simple solutions for
+  different transactions. Other systems offer a variety of functions,
+  varying in difficulty, but ours is the most user-friendly and the
+  easiest to use. This is not something that is a characteristic of
+  decentralized exchanges, but our engineers have worked hard
+  and succeeded in creating a UX (user interface) that is a pleasure
+  to work with. We built a great collection of components based on React framework.
+
+- A place of trading that offers a wide and easy overview. The order
+  books and trades can be put in ascending / descending order
+  based on volume, price, date, and quality.
+
+- An unbelievably easy-to-use wallet - this function offers
+  transaction both from and to address to the exchange. You can
+  see all your balances in one place, without having to switch from
+  one work session to another.
+
+- Decentralization and the speed of currency transfer: Exchange is independent from financial institutions such as banks, and happened across muliple nodes. It uses a decentralized database, which is immune to any
+  manipulation. Transfers are being booked immediately, making
+  the express transfers possible, without the need of third parties.
+  With digital currencies exchanges like ours, buyers and sellers
+  are immediately connected. In the case of fiat currencies, we are
+  dependent on the time of posting funds in banks
+
+#### How orderbook is stored decentralized
+
+- Orderbook engine can be store as a single Red-Black Tree in ethereum blockchain. Due to the unpredictable size, we map each dynamically sized Orderbook with a region of consecutive blocks in storage, start from slot=keccak256(pair_id). Each orderbook is a pair of 2 order tree, Bids and Asks. Each order tree is a red black tree of Price item. And each price is linked to a list of Orders that have that same price. Because every slot is collion avoidable by using crypto hashes algorithm, we can flat them into one and only state database with just simple key/value operations, and therefore we can easy synchronize the snapshot of the orderbook across multiple masternodes.
+
 ### Financial Services: KYC and AML Application
 
 # Conclusion
 
+<<<<<<< HEAD
 # Appendix 1
 Novalex Decentralised Cryptocurrency Exchange
+=======
+# Appendix
+
+What means "decentralized" exchange
+
+In the exchange world, "decentralized" exchange is where funds are not safe-guarded by centralized entities. No need for trust, no central clearing authority, some privacy, no Big Brother watching, low transfer fees.
+
+One of the meaning of blockchain is security, but, in a centralized exchange, exchange market holder can hold your wallet, setup price, fee.. so what is the problem if the exchanges are hacked? In 2018, over \$1.5 billion of crypto has been stolen from centralised cryptocurrency exchanges. Vitalik Buterin stating that he hopes “centralised exchanges go burn in hell as much as possible” and cryptocurrency pioneer Nick Szabo calling trusted third parties “security holes”
+
+Blockchain meaning is not involed any third parties, so decentralized exchange will be next big thing.
+
+For the futures, decentralized exchange can apply for digital assets, stock..
+>>>>>>> 12753a502b7e41b2db7115ec6c32bfe4d752ec24
 
 #References
    
