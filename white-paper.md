@@ -43,11 +43,39 @@ For clarity, we separated our architecture into 4 modules:
 
 ##### FrontEnd
 
+Nova decentralized exchange is a on chain decentralized exchange that aims at bringing together the ease of decentralized orderbook with the security and privacy features of ethereum protocols. Nova frontend is a sdk which supports:
+
+- Authentication: private key, keystore, mnemonic phrase, metamask, trezor hardware and ledger hardware wallets.
+- Wallet management: deposit and withdraw token, add custom token, list transaction.
+- Exchange: buy/sell tokens, order book market prices, trade history and OHLCV Chart.
+- Protocol level: sign orderbook decentralized using wallet and update balance on chain directly.
+
 ##### BackEnd
+
+Nova Backend is just a sdk without off-chain storage like other hybrid solution which means it does not store any order information in its centralized database. Backend has the following components:
+
+- Http Server to serve API data in json format.
+- Websocket Server to handle keepalive connections and serve realtime data
+- Matching Engine module to send order to NOVA protocol and later retrieve back the settlement result from the nova smart contracts
+- Blockchain Monitor to watch for transaction changes on the blockchain, help coin holders to desposit and exchange cross chain.
+- Store hierarchy keys associated with desposited wallet address.
+- Support dev environemnt to run a local ethereum node and support for ropsten and mainnet.
 
 ##### Exchange
 
+Built as a protocol which facilitating red-black tree operations and store it as an ethereum database.
+
 ##### Relayer
+
+Relayers provide a marketplace for traders to buy/sell tokens. They use Nova Protocol to process and complete the transactions.
+
+Relayers perform the following actions:
+
+- Collect trader orders (off-chain)
+- Manage orders and perform Price-Time Priority matching
+- When orders match, pack the details into transactions
+- Send transactions to blockchain to confirm them on-chain
+- When the blockchain completes the trade, notify the traders
 
 ### Novalex incentivization
 
