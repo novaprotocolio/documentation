@@ -1,24 +1,31 @@
 # Abstract
+
 We introduce a new blockchain architecture and concept that is practical in terms of operability, scalable and economically sensible. Novalex blockchain is a public EVM-compatible blockchain that focuses on maintaining an instantaneous confirmation time, high level of security and a sensible low-fee, high volume compensation scheme. We use a ranking proof of stake voting consensus for increased security and fast confirmation. Our ranking-bias voting mechanism provides a fair compensation scheme for our masternodes, thus encouraging each masternode to improve on its stake and performance for maximum compensation. This benefits the entire ecosystem through healthy competition and high masternode engagement. Using our robust ecosystem, we eventually aim to built practical decentralised applications that will generate a revenue stream for our coin holders providing immediate dividends unlike an Equity underlying which normally pay quaterly dividends. We do so in an environment where decision making is decentralised unlike the current norm where power in concentrated in a single agency. This will greatly help the blockchain ecosystem by conceptually bringing it closer to mainstream business and finance, facilitating the evolution to create a decentralised economic hinterland where power is shared rather concentrated in a single agency.
 
 # Introduction
-The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain architecture that is pushing the boundaries of decentralisation. Our focus is not only on building the underlying blockchain technology. We also leverage the technology to build useful DApps that transcends the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying albeit in a different time scale. Our token will then used as a medium for reward, payment or transactions  [link][1]
+
+The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain architecture that is pushing the boundaries of decentralisation. Our focus is not only on building the underlying blockchain technology. We also leverage the technology to build useful DApps that transcends the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying albeit in a different time scale. Our token will then used as a medium for reward, payment or transactions [link][1]
 
 ### A World of Centralised Institutions
+
 The argument with respect to the benefits and detriments of centralisation vs decentralisation has been evolving for centuries. The studies of Social and Behavioral Sciences with respect to these structures of society is well studied and documented. Since the Neolithic Age, human or its ancestors have began a period of centralisation. Communities became cities and cities became empires. As people came together it became more difficult to maintain trust and harmony, leading to a collapse of society, hence arises a need to form central institutions of governance and gatekeepers.
 
 ### A Decentralised Future
-Bitcoin was created in 2008 when Satoshi Nakamoto    With the Advent of blockchain technology
+
+Bitcoin was created in 2008 when Satoshi Nakamoto With the Advent of blockchain technology
 
 # Architecture
-The Novalex blockchain architecture consist of several modules in our core layer including our masternode configuration, consensus mechanism , token account management. For simplicity, solidity is chosen as a preferred language for smart contracts due to its overiding popularity, however we also provide support for python, Javascript and will aim to also support C++ and powercell in the near future. Novalex uses a ranking proof of stake voting mechanism to ensure a high level of security and fair compensation scheme.
+
+The Novalex blockchain architecture consist of several modules in our core layer including our masternode configuration, consensus mechanism, token account management. For simplicity, solidity is chosen as a preferred language for smart contracts due to its overiding popularity, however we also provide support for python, Javascript and will aim to also support C++ and powercell in the near future. Novalex uses a ranking proof of stake voting mechanism to ensure a high level of security and fair compensation scheme.
 
 ### What is Novalex Blockchain?
+
 Blockchain is a decentralized distributed database or ledger. 'Decentralization' implies that the application or service continues to be available and usable even if a server or a group of servers on a network crashes or are not available. 'Distributed' implies that any server or node on the network is connected to every other node directly or indirectly. Figure 1 show an elaboration of our architecture where we used an online asset exchange as an example to establish the useability and scalablity of our blockchain. Through generalisation, other DApps can be built and integrated with the Novalex blockchain using smart contracts.
 
 ![architecture](assets/NovalexBlockchain.svg?sanitize=true)
 
 ### Design
+
 Novalex is a public EVM-compatible blockchain that allows you to create blocks almost instantaneously. Our advantages over several of our peers are:
 
 - allowing tokens holders vote for the block producers
@@ -28,18 +35,47 @@ Novalex is a public EVM-compatible blockchain that allows you to create blocks a
 We propose Ranking Proof-Of-Stake consensus, a Proof-Of-Stake based blockchain with voting mechanism and ranking algorithm. Top 68 block producers are selected by continous voting of NOVA token holders. Each Nova token holder is given the opportunity to give 80 votes, corresponding to power of staked tokens.
 
 For clarity, we separated our architecture into 4 modules:
+
 - FrontEnd
 - BackEnd
-- Exchange 
-- Relayer 
+- Exchange
+- Relayer
 
 ##### FrontEnd
 
+Nova decentralized exchange is a on chain decentralized exchange that aims at bringing together the ease of decentralized orderbook with the security and privacy features of ethereum protocols. Nova frontend is a sdk which supports:
+
+- Authentication: private key, keystore, mnemonic phrase, metamask, trezor hardware and ledger hardware wallets.
+- Wallet management: deposit and withdraw token, add custom token, list transaction.
+- Exchange: buy/sell tokens, order book market prices, trade history and OHLCV Chart.
+- Protocol level: sign orderbook decentralized using wallet and update balance on chain directly.
+
 ##### BackEnd
+
+Nova Backend is just a sdk without off-chain storage like other hybrid solution which means it does not store any order information in its centralized database. Backend has the following components:
+
+- Http Server to serve API data in json format.
+- Websocket Server to handle keepalive connections and serve realtime data
+- Matching Engine module to send order to NOVA protocol and later retrieve back the settlement result from the nova smart contracts
+- Blockchain Monitor to watch for transaction changes on the blockchain, help coin holders to desposit and exchange cross chain.
+- Store hierarchy keys associated with desposited wallet address.
+- Support dev environemnt to run a local ethereum node and support for ropsten and mainnet.
 
 ##### Exchange
 
+Built as a protocol which facilitating red-black tree operations and store it as an ethereum database.
+
 ##### Relayer
+
+Relayers provide a marketplace for traders to buy/sell tokens. They use Nova Protocol to process and complete the transactions.
+
+Relayers perform the following actions:
+
+- Collect trader orders (off-chain)
+- Manage orders and perform Price-Time Priority matching
+- When orders match, pack the details into transactions
+- Send transactions to blockchain to confirm them on-chain
+- When the blockchain completes the trade, notify the traders
 
 ### Novalex incentivization
 
@@ -403,9 +439,11 @@ including, but not limited to the following:
 # Conclusion
 
 <<<<<<< HEAD
+
 # Appendix 1
-Novalex Decentralised Cryptocurrency Exchange
-=======
+
+# Novalex Decentralised Cryptocurrency Exchange
+
 # Appendix
 
 What means "decentralized" exchange
@@ -417,10 +455,10 @@ One of the meaning of blockchain is security, but, in a centralized exchange, ex
 Blockchain meaning is not involed any third parties, so decentralized exchange will be next big thing.
 
 For the futures, decentralized exchange can apply for digital assets, stock..
->>>>>>> 12753a502b7e41b2db7115ec6c32bfe4d752ec24
+
+> > > > > > > 12753a502b7e41b2db7115ec6c32bfe4d752ec24
 
 #References
-   
 
 [1]: [Ethereum White Paper ](https://github.com/ethereum/wiki/wiki/White-Paper)  
 [2]: [Evolving from Decentralization to Centralization ](https://hackernoon.com/evolving-from-decentralization-to-centralization-33e7db8aadd2)
