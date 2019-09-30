@@ -83,7 +83,7 @@ Novalex is produced and maintained by a set of masternodes in a consistent manne
 
 Double validation with ranking is added to decrease the probability of having invalid blocks in the blockchain.
 
-After depositing 80 000 NOVA to the Voting Smart Contract, the the depositors are listed as masternode candidates in the Voting DApp, which allows coin-holders to vote for them by sending NOVA to the smart contract.
+After depositing 80 000 NOVA to the Voting Smart Contract, the depositors are listed as masternode candidates in the Voting DApp, which allows coin-holders to vote for them by sending NOVA to the smart contract.
 The list is sorted dynamically based on voted coins. We track CPU/Memory as workload, number of signed block as performance, last signed block as last activity, then candidate is chosen based on the performance factor. All masternodes have to race for their positions so that all weak nodes eventually will be eliminated. Masternode is
 locked for 1 month after demoted.
 
@@ -98,6 +98,7 @@ Novalex has a built-in orderbook engine so that relayers can launch a decentrali
 ### Smart Contract
 
 ### Reward Mechanism
+
 
 # Ranking Proof Of Stake Consensus
 
