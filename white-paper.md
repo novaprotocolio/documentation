@@ -42,8 +42,10 @@ For clarity, we separated our architecture into 4 modules:
 - Relayer
 
 ##### FrontEnd
+Coin holder can send coin to other users and can vote masternode, they can send coin   
 
-Nova decentralized exchange is a on chain decentralized exchange that aims at bringing together the ease of decentralized orderbook with the security and privacy features of ethereum protocols. Nova frontend is a sdk which supports:
+
+Nova frontend is a sdk which supports:
 
 - Authentication: private key, keystore, mnemonic phrase, metamask, trezor hardware and ledger hardware wallets.
 - Wallet management: deposit and withdraw token, add custom token, list transaction.
@@ -63,6 +65,7 @@ Nova Backend is just a sdk without off-chain storage like other hybrid solution 
 
 ##### Exchange
 
+Nova decentralized exchange is a on chain decentralized exchange that aims at bringing together the ease of decentralized orderbook with the security and privacy features of ethereum protocols.
 Built as a protocol which facilitating red-black tree operations and store it as an ethereum database.
 
 ##### Relayer
@@ -84,21 +87,23 @@ Novalex is produced and maintained by a set of masternodes in a consistent manne
 Double validation with ranking is added to decrease the probability of having invalid blocks in the blockchain.
 
 After depositing 80 000 NOVA to the Voting Smart Contract, the depositors are listed as masternode candidates in the Voting DApp, which allows coin-holders to vote for them by sending NOVA to the smart contract.
-The list is sorted dynamically based on voted coins. We track CPU/Memory as workload, number of signed block as performance, last signed block as last activity, then candidate is chosen based on the performance factor. All masternodes have to race for their positions so that all weak nodes eventually will be eliminated. Masternode is
-locked for 1 month after demoted.
 
-After 600 blocks, a checkpoint block is created, the masternode who takes turn in the circular has to scan all of the created blocks in the epoch to count number of signatures.
+The list is sorted dynamically based on voted coins. We track CPU/Memory as workload, number of signed block as performance, last signed block as last activity, then candidate is chosen based on the performance factor. All masternodes have to compete for their positions so that all weak nodes eventually will be eliminated. Masternode is
+locked for 1 month after demotion.
 
-- 60% of reward called infastructure reward goes to masternodes
-- staking reward: 30% goes to the pool of all voters for that Masternode which is shared proportionally based on the token stake.
-- 10% goes to development funding account.
+After 600 blocks (1 epoch), a checkpoint block is created by the current masternode, at this point all other masternodes will scan all created blocks in the epoch to count number of signatures. The authority to create blocks is then passed on to the next most voted masternode to create the next epoch.
 
 Novalex has a built-in orderbook engine so that relayers can launch a decentralized exchange without maintaining an off-chain database.
 
 ### Smart Contract
+    
 
 ### Reward Mechanism
+The rewards are divided as follows
 
+- Infrastructure reward: 60% - awarded to the masternode who created the block
+- Staking reward: 30% - awarded to the pool of all voters for that chosen masternode which is shared proportionally based on the token stake.
+- Development funding account: 10% - returned to Novalex for development funding.
 
 # Ranking Proof Of Stake Consensus
 
