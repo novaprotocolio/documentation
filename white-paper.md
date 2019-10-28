@@ -17,6 +17,7 @@ Bitcoin was created in 2008 when Satoshi Nakamoto With the Advent of blockchain 
 Scalability
 
 Security Vs Throughput
+
 # Architecture
 
 The Novalex blockchain architecture consist of several modules in our core layer including our masternode configuration, consensus mechanism, token account management. For simplicity, solidity is chosen as a preferred language for smart contracts due to its overiding popularity, however we also provide support for python, Javascript and will aim to also support C++ and powercell in the near future. Novalex uses a ranking proof of stake voting mechanism to ensure a high level of security and fair compensation scheme.
@@ -25,7 +26,7 @@ The Novalex blockchain architecture consist of several modules in our core layer
 
 Blockchain is a decentralized distributed database or ledger. 'Decentralization' implies that the application or service continues to be available and usable even if a server or a group of servers on a network crashes or are not available. 'Distributed' implies that any server or node on the network is connected to every other node directly or indirectly. Figure 1 show an elaboration of our architecture where we used an online asset exchange as an example to establish the useability and scalablity of our blockchain. Through generalisation, other DApps can be built and integrated with the Novalex blockchain using smart contracts.
 
-![architecture](./assets/NovalexBlockchain.svg)
+![architecture](./assets/NovalexBlockchain.png)
 
 ### Design
 
@@ -45,8 +46,8 @@ For clarity, we separated our architecture into 4 modules:
 - Relayer
 
 ##### FrontEnd
-Coin holder can send coin to other users and can vote masternode, they can send coin   
 
+Coin holder can send coin to other users and can vote masternode, they can send coin
 
 Nova frontend is a sdk which supports:
 
@@ -99,9 +100,9 @@ After 600 blocks (1 epoch), a checkpoint block is created by the current mastern
 Novalex has a built-in orderbook engine so that relayers can launch a decentralized exchange without maintaining an off-chain database.
 
 ### Smart Contract
-    
 
 ### Reward Mechanism
+
 The rewards are divided as follows
 
 - Infrastructure reward: 60% - awarded to the masternode who created the block
@@ -446,8 +447,6 @@ including, but not limited to the following:
 
 # Conclusion
 
-<<<<<<< HEAD
-
 # Appendix 1
 
 # Novalex Decentralised Cryptocurrency Exchange
@@ -463,8 +462,6 @@ One of the meaning of blockchain is security, but, in a centralized exchange, ex
 Blockchain meaning is not involed any third parties, so decentralized exchange will be next big thing.
 
 For the futures, decentralized exchange can apply for digital assets, stock..
-
-> > > > > > > 12753a502b7e41b2db7115ec6c32bfe4d752ec24
 
 #References
 

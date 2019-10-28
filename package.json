@@ -11,8 +11,12 @@
   },
   "docsifytopdf": {
     "contents": [
-      "./white-paper.md"
+      "_whitepaper.md"
     ],
+    "pdfOptions": {
+      "displayHeaderFooter": true,
+      "footerTemplate": "<b>Test</b>"
+    },
     "pathToPublic": "whitepaper.pdf",
     "removeTemp": true,
     "emulateMedia": "screen"
