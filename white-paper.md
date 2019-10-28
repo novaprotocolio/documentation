@@ -1,10 +1,10 @@
 # Abstract
 
-We introduce a new blockchain architecture and concept that is practical in terms of operability, scalable and economically sensible. Novalex blockchain is a public EVM-compatible blockchain that focuses on maintaining an instantaneous confirmation time, high level of security and a sensible low-fee, high volume compensation scheme. We use a ranking proof of stake voting consensus for increased security and fast confirmation. Our ranking-bias voting mechanism provides a fair compensation scheme for our masternodes, thus encouraging each masternode to improve on its stake and performance for maximum compensation. This benefits the entire ecosystem through healthy competition and high masternode engagement. Using our robust ecosystem, we eventually aim to built practical decentralised applications that will generate a revenue stream for our coin holders providing immediate dividends unlike an Equity underlying which normally pay quaterly dividends. We do so in an environment where decision making is decentralised unlike the current norm where power in concentrated in a single agency. This will greatly help the blockchain ecosystem by conceptually bringing it closer to mainstream business and finance, facilitating the evolution to create a decentralised economic hinterland where power is shared rather concentrated in a single agency.
+We introduce a new blockchain architecture and concept that is practical in terms of operability, scalable and economically sensible. Novalex blockchain is a public EVM-compatible blockchain that focuses on maintaining an instantaneous confirmation time, high level of security and a sensible low-fee, high volume compensation scheme. We use a ranking proof of stake voting consensus for increased security and fast confirmation. Our ranking-bias voting mechanism provides a fair compensation scheme for our masternodes, thus encouraging each masternode to improve on its stake and performance for maximum compensation. This benefits the entire ecosystem through healthy competition and high masternode engagement. Using our robust ecosystem, we eventually aim to built practical decentralised applications that will generate a revenue stream for our coin holders providing immediate dividends unlike an Equity underlying which normally pay quarterly dividends. We do so in an environment where decision making is decentralised unlike the current norm where power in concentrated in a single agency. This will greatly help the blockchain ecosystem by conceptually bringing it closer to mainstream business and finance, facilitating the evolution to create a decentralised economic hinterland where power is shared rather than concentrated in a single agency. Although it is argued the main ethos for decentralization is non profit, it is a policy that is difficult to maintain and justify. Hence we offer a model of sustainable profitability where cost is low for consumers and profit is sustainable for our coinholders and masternodes. In this era of increasing populism, we build our ecosystem based on a philosophy of responsible capitalism.
 
 # Introduction
 
-The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain architecture that is pushing the boundaries of decentralisation. Our focus is not only on building the underlying blockchain technology. We also leverage the technology to build useful DApps that transcends the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying albeit in a different time scale. Our token will then used as a medium for reward, payment or transactions [link][1]
+The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain architecture that is pushing the boundaries of decentralisation. Our focus is not only on building the underlying blockchain technology. We also leverage the technology to build useful DApps that transcends the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying albeit in a different line. Our token will then used as a medium for reward, payment or transactions [link][1]
 
 ### A World of Centralised Institutions
 
@@ -14,6 +14,9 @@ The argument with respect to the benefits and detriments of centralisation vs de
 
 Bitcoin was created in 2008 when Satoshi Nakamoto With the Advent of blockchain technology
 
+Scalability
+
+Security Vs Throughput
 # Architecture
 
 The Novalex blockchain architecture consist of several modules in our core layer including our masternode configuration, consensus mechanism, token account management. For simplicity, solidity is chosen as a preferred language for smart contracts due to its overiding popularity, however we also provide support for python, Javascript and will aim to also support C++ and powercell in the near future. Novalex uses a ranking proof of stake voting mechanism to ensure a high level of security and fair compensation scheme.
@@ -22,7 +25,7 @@ The Novalex blockchain architecture consist of several modules in our core layer
 
 Blockchain is a decentralized distributed database or ledger. 'Decentralization' implies that the application or service continues to be available and usable even if a server or a group of servers on a network crashes or are not available. 'Distributed' implies that any server or node on the network is connected to every other node directly or indirectly. Figure 1 show an elaboration of our architecture where we used an online asset exchange as an example to establish the useability and scalablity of our blockchain. Through generalisation, other DApps can be built and integrated with the Novalex blockchain using smart contracts.
 
-![architecture](assets/NovalexBlockchain.svg?sanitize=true)
+![architecture](./assets/NovalexBlockchain.svg)
 
 ### Design
 
@@ -465,6 +468,13 @@ For the futures, decentralized exchange can apply for digital assets, stock..
 
 #References
 
-[1]: [Ethereum White Paper ](https://github.com/ethereum/wiki/wiki/White-Paper)  
-[2]: [Evolving from Decentralization to Centralization ](https://hackernoon.com/evolving-from-decentralization-to-centralization-33e7db8aadd2)
-[3]: [Bitcoin: A Peer-to-Peer Electronic Cash System](https://bitcoin.org/bitcoin.pdf)
+[1]: [Ethereum White Paper](https://github.com/ethereum/wiki/wiki/White-Paper)  
+[2]: [Evolving from Decentralization to Centralization](https://hackernoon.com/evolving-from-decentralization-to-centralization-33e7db8aadd2)  
+[3]: [Bitcoin: A Peer-to-Peer Electronic Cash System](https://bitcoin.org/bitcoin.pdf)  
+[4]: [TRON Advanced Decentralized Blockchain Platform](https://tron.network/static/doc/white_paper_v_2_0.pdf)  
+[5]: [An Intoduction to Hyperledger](https://www.hyperledger.org/wp-content/uploads/2018/07/HL_Whitepaper_IntroductiontoHyperledger.pdf)  
+[6]: [EOS.IO Technical White Paper v2](https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md)  
+[7]: [KyberNetwork: A trustless decentralized exchange and payment service](https://whitepaper.io/document/43/kyber-network-whitepaper)  
+[8]: [The Stellar Consensus Protocol:A Federated Model for Internet-level Consensus](https://www.stellar.org/papers/stellar-consensus-protocol.pdf)  
+[9]: [ETHEREUM: A SECURE DECENTRALISED GENERALISED TRANSACTION LEDGER EIP-150 REVISION](https://gavwood.com/paper.pdf)  
+[10]:[Scaling Nakamoto Consensus to Thousands of Tranactions per Second](https://arxiv.org/pdf/1805.03870.pdf)

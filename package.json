@@ -11,7 +11,7 @@
   },
   "docsifytopdf": {
     "contents": [
-      "whitepaper/_sidebar.md"
+      "./white-paper.md"
     ],
     "pathToPublic": "whitepaper.pdf",
     "removeTemp": true,
