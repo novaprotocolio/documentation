@@ -277,11 +277,11 @@ $$
 
 **Normalization Vote Deposit**
 
-$v^{\prime}_i$ = $\frac{VoteDeposit_{i} - VoteDeposit_{min}}{VoteDeposit_{max} - VoteDeposit_{min}}$ where $i \in [1,...,n]$
+$v^{\prime}_i$ = $\frac{VoteDeposit_{i} - VoteDeposit_{min}}{VoteDeposit_{max}}$ where $i \in [1,...,n]$
 
 **Normalization Trust**
 
-$t^{\prime}_i$ = $\frac{Trust_{i} - Trust_{min}}{Trust_{max} - Trust_{min}}$ where $i \in [1,...,n]$
+$t^{\prime}_i$ = $\frac{Trust_{i} - Trust_{min}}{Trust_{max}}$ where $i \in [1,...,n]$
 
 **Calcurlating trust**
 
@@ -313,6 +313,13 @@ ranking coefficient (r)
 trust (t)
 
 vote_deposit (v)
+
+$$
+\begin{matrix}
+   a & b \\
+   c & d
+\end{matrix}
+$$
 
 # Application
 
