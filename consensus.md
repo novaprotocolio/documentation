@@ -314,13 +314,6 @@ trust (t)
 
 vote_deposit (v)
 
-$$
-\begin{matrix}
-   a & b \\
-   c & d
-\end{matrix}
-$$
-
 # Application
 
 ### Financial Services: Decentralised Exchange
