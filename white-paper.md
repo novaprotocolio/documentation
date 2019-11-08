@@ -16,7 +16,26 @@ Bitcoin was created in 2008 when Satoshi Nakamoto With the Advent of blockchain 
 
 Scalability
 
+Today, Ethereum processes roughly 500,000 transactions per day, and at full capacity, can process about 13 transactions per second. While these transactions don’t require a third party to validate them, centralized counterparts can process transactions much more efficiently. For example, Visa’s payment network processes 150 million transactions per day — orders of magnitude more than any decentralized blockchain network has been able to achieve. The main reason behind Ethereum’s scalability bottleneck is that each node in the network has to process each transaction, so to increase the performance, we need to limit the number of nodes that processing transactions.
+
+- give up on scaling individual blockchains, and instead assume that applications will be split among many different chains. It can increase throughput, but at a cost of security.
+- increase size limit: if one goes too far, the network will start to rely on a very small number of supercomputers running the blockchain.
+- so to make exchange become decentralized, we rely on smart contracts, but it is limited, that's why we integrated into blockchain core
+
+As mentioned above, scalability issue is really a big deal in the blockchain technology area.
+Novalex is the project that applying the off-chain solution by creating a private blockchain with a fixed number of masternodes that performs faster and better especially for decentralized exchange applications.
+
 Security Vs Throughput
+
+- contracts have bugs => should not build a big application entirely in smart contracts
+- pseudo random number has bugs, based on block variables, block hash,
+  we used commit-reveal approach (nobody knows each other's seeds so the result is truly random)=> safer implementation (randomized leader election)
+- each party is paid a reward for participation (via voting mechanisim)
+- the limit of smart contracts: each operation requires gas => run out of gas
+- smart contract platforms are just one blockchain with a single, shared network. That puts a strict limit on the total transactions that the network can process in any given second. With a private ethereum blockchain, the maximum TPS can process is around 600.
+- So by moving order message at the blockchain layer, we can achive a higher throughput at 2000.
+
+![architecture](./assets/TPS.png)
 
 # Architecture
 
