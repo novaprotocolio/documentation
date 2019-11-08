@@ -111,83 +111,9 @@ Block is created by block producer, namely masternode. First block creator is mo
 
 The algorithm is as following:
 
-```python
-
-# chose a leader node by voting
-def vote_leader_test(nodes):
-    #random array with length is number of canidate of leader
-    arr_random = np.random.rand(len(nodes)).tolist()
-    #select lead node
-    index_of_leader = -1
-    maximum = -1
-    arr_leader = []
-    for i in range(len(nodes)):
-        multi = nodes[i][NUMBER_OF_DEPOSIT] * arr_random[i]
-        arr_leader.append(multi)
-        if multi > maximum:
-            index_of_leader = i
-            maximum = arr_leader[i]
-    nodes[index_of_leader][LEADER_TEST] += 1
-    return index_of_leader
-
-# Trust for each masternode
-def trust(nodes, arr_speed, total_epoch):
-    trust_max = 0
-    speed_arg = sum(arr_speed)/len(nodes)
-    # weight for Trust algorithm
-    a,b,c,d = 0.25, 0.1, 0.3, 0.35
-    for i in range(len(arr_deposit_vote)):
-        # Trust algorithm
-        trust = a*(nodes[i][NUMBER_OF_EPOCH]/total_epoch) + b*(
-                nodes[i][SPEED]/speed_arg) + c*(
-                nodes[i][LEADER]/nodes[i][NUMBER_OF_EPOCH]) + d*(
-                nodes[i][VALIDATOR]/nodes[i][NUMBER_OF_EPOCH])
-        nodes[i][TRUST] = trust
-        if trust > trust_max:
-            trust_max = trust
-    return trust_max
-
-# Ranking for each masternode
-def ranking(nodes, arr_deposit_vote, trust_max, deposit_max):
-    total_deposit = sum(arr_deposit_vote)
-    a = 0.25
-    for i in range(len(nodes)):
-        vote_deposit_avg = arr_deposit_vote[i] / deposit_max
-        trust_avg = nodes[i][TRUST] / trust_max
-        nodes[i][RANKING] = a * vote_deposit_avg + (1-a) * math.sqrt(trust_avg)
-
-# Random validator base on Ranking of each node
-def choose_validator_test(nodes, leader):
-    index_of_validator = -1
-    maximum = -1
-    arr_random = np.random.rand(len(nodes)).tolist()
-    for i in range(len(arr_random)):
-        if nodes[i][RANKING] == 0:
-            point = arr_random[i]
-        else:
-            point = math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
-        if point > maximum:
-            maximum = point
-            if i != leader:
-                index_of_validator = i
-    nodes[index_of_validator][VALIDATOR_TEST] += 1
-    return index_of_validator
-```
-
-**Start running**
-
-```python
-trust_max = trust(nodes, arr_speed, total_epoch)
-ranking(nodes, arr_deposit_vote, trust_max, deposit_max)
-
-for i in range(len(nodes)):
-    nodes[i][LEADER_TEST] = 0
-    nodes[i][VALIDATOR_TEST] = 0
-for i in range(500000):
-    leader_test = vote_leader_test01(nodes)
-    validator_test = choose_validator_test(nodes, leader_test)
-nodes.sort(key=lambda x: x[RANKING])
-```
+![selection](assets/algorithm_1.png)
+![selection](assets/algorithm_2.png)
+![selection](assets/algorithm_3.png)
 
 **With 100 000 and 500 000 Epoch sample**  
 ![selection](assets/node_selection.png)

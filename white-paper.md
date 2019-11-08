@@ -237,88 +237,12 @@ Block is created by block producer, namely masternode. First block creator is mo
 
 The algorithm is as following:
 
-```python
-
-# chose a leader node by voting
-def vote_leader_test(nodes):
-    #random array with length is number of canidate of leader
-    arr_random = np.random.rand(len(nodes)).tolist()
-    #select lead node
-    index_of_leader = -1
-    maximum = -1
-    arr_leader = []
-    for i in range(len(nodes)):
-        multi = nodes[i][NUMBER_OF_DEPOSIT] * arr_random[i]
-        arr_leader.append(multi)
-        if multi > maximum:
-            index_of_leader = i
-            maximum = arr_leader[i]
-    nodes[index_of_leader][LEADER_TEST] += 1
-    return index_of_leader
-
-# Trust for each masternode
-def trust(nodes, arr_speed, total_epoch):
-    trust_max = 0
-    speed_arg = sum(arr_speed)/len(nodes)
-    # weight for Trust algorithm
-    a,b,c,d = 0.25, 0.1, 0.3, 0.35
-    for i in range(len(arr_deposit_vote)):
-        # Trust algorithm
-        trust = a*(nodes[i][NUMBER_OF_EPOCH]/total_epoch) + b*(
-                nodes[i][SPEED]/speed_arg) + c*(
-                nodes[i][LEADER]/nodes[i][NUMBER_OF_EPOCH]) + d*(
-                nodes[i][VALIDATOR]/nodes[i][NUMBER_OF_EPOCH])
-        nodes[i][TRUST] = trust
-        if trust > trust_max:
-            trust_max = trust
-    return trust_max
-
-# Ranking for each masternode
-def ranking(nodes, arr_deposit_vote, trust_max, deposit_max):
-    total_deposit = sum(arr_deposit_vote)
-    a = 0.25
-    for i in range(len(nodes)):
-        vote_deposit_avg = arr_deposit_vote[i] / deposit_max
-        trust_avg = nodes[i][TRUST] / trust_max
-        nodes[i][RANKING] = a * vote_deposit_avg + (1-a) * math.sqrt(trust_avg)
-
-# Random validator base on Ranking of each node
-def choose_validator_test(nodes, leader):
-    index_of_validator = -1
-    maximum = -1
-    arr_random = np.random.rand(len(nodes)).tolist()
-    for i in range(len(arr_random)):
-        if nodes[i][RANKING] == 0:
-            point = arr_random[i]
-        else:
-            point = math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
-        if point > maximum:
-            maximum = point
-            if i != leader:
-                index_of_validator = i
-    nodes[index_of_validator][VALIDATOR_TEST] += 1
-    return index_of_validator
-```
-
-**Start running**
-
-```python
-trust_max = trust(nodes, arr_speed, total_epoch)
-ranking(nodes, arr_deposit_vote, trust_max, deposit_max)
-
-for i in range(len(nodes)):
-    nodes[i][LEADER_TEST] = 0
-    nodes[i][VALIDATOR_TEST] = 0
-for i in range(500000):
-    leader_test = vote_leader_test01(nodes)
-    validator_test = choose_validator_test(nodes, leader_test)
-nodes.sort(key=lambda x: x[RANKING])
-```
+![selection](assets/algorithm_1.png)
+![selection](assets/algorithm_2.png)
+![selection](assets/algorithm_3.png)
 
 **With 100 000 and 500 000 Epoch sample**  
 ![selection](assets/node_selection.png)
-
-![1 million node](assets/consensus_1m.png)
 
 ```mermaid
 sequenceDiagram
@@ -367,20 +291,74 @@ graph TB
     h---b
 ```
 
-In the Novalex protocol blockchain, instead of using the random matrix to choose the masternode to be the validator, we use **Ranking** to select validator. Purpose to reduce the ability of the masternode which is less trusted to become validator. Our ranking builds based on two factors: **Deposit amount** and **reliability** of each masternode. Because we voted the leader based on the amount of deposit so we don't want the validator to depend too much on deposit and that should focus on reliability. In order to calculate ranking for each masternode, the system use weighted for two variables and will normalize the parameters to the same scale as $[0,1]$. Specifically, we will use the deposit of the masternode divided by the most deposited masternode (deposit[i] / max_deposit) and so on with trust (trust[i] / max_trust). In terms of reliability, we build on 4 main factors: the number of epochs that the node participates in, the CPU processing speed, the number of times to become the leader, the number of times to become the validator. Finally, we **multiply** the ranking matrix with the random matrix and choose the masternode that has the highest score to become the validator there
+In the Novalex protocol blockchain, instead of using the random matrix to choose the masternode to be the validator, we use **Ranking** to select validator. Purpose to reduce the ability of the masternode which is less trusted to become validator. Our ranking builds based on two factors: **Deposit amount** and **reliability** of each masternode. Because we voted the leader based on the amount of deposit so we don't want the validator to depend too much on deposit and that should focus on reliability. In order to calculate ranking for each masternode, the system use weighted for two variables and will normalize the parameters to the same scale as $[0,1]$. Specifically, we will use the deposit of the masternode divided by the most deposited masternode (deposit[i] / max_deposit) and so on with trust (trust[i] / max_trust). In terms of reliability, we build on 4 main factors: the number of epochs that the node participates in, the CPU processing speed, the number of times to become the leader, the number of times to become the validator. Finally, we **multiply** the ranking matrix with the random matrix and choose the masternode that has the highest score to become the validator there.
 
-```python
-trust = a*(nodes[i][NUMBER_OF_EPOCH]/total_epoch) + b*(
-    nodes[i][SPEED]/speed_arg) + c*(
-    nodes[i][LEADER]/nodes[i][NUMBER_OF_EPOCH]) + d*(
-    nodes[i][VALIDATOR]/nodes[i][NUMBER_OF_EPOCH])
-```
+![1 million node](assets/consensus_1m.png)
+**Version 1**: The line graph above compares the ranking and the number of validator of 150 masternode. Before comparing, we sort data follow the ranking in increasing direction. It is clear that the masternode has the opportunity to be the validator according to the ranking of it. On the other hand, our algorithm help the masternode which has low ranking still have change to be validator. We tested with 100000 and 50000 epoch sample, the result of line green and yellow are the same from the lowest to the highest and follow by the ranking.
+
+**Version 2**: The line graph compares the ranking and the number of validator of 150 masternode. Before comparing, data is sorted in an upward pattern. It is clear that the masternode has the opportunity to be the validator according to its ranking. On the other hand, our algorithm helps the masternode, which has low ranking, to become a validator. We tested with 100000 and 50000 epoch samples, the result of line green and yellow are the same from the lowest to the highest and followed by the ranking.
+
+**Calcurlating trust**
+
+$$
+\begin{alignedat}{1}
+    T =
+    \begin{bmatrix}
+        t_{1} \\
+        t_{2} \\
+        \vdots \\
+        t_{n-1} \\
+        t_{n}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        epoch_1 & speed_1 & leader_1 & validator_1 \\
+        epoch_2 & speed_2 & leader_2 & validator_2 \\
+        \vdots & \vdots & \vdots & \vdots \\
+        epoch_{n-1} & speed_{n-1} & leader_{n-1} & validator_{n-1} \\
+        epoch_n & speed_n & leader_n & validator_n \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \alpha & \beta & \gamma & \delta \\
+    \end{bmatrix} \;\;\;\;\;\;\;\;\;\;\;\;\;\; \\ \;
+\end{alignedat}
+$$
+
+**Normalization Vote Deposit**
+
+$v^{\prime}_i$ = $\frac{VoteDeposit_{i} - VoteDeposit_{min}}{VoteDeposit_{max}}$ where $i \in [1,...,n]$
+
+**Normalization Trust**
+
+$t^{\prime}_i$ = $\frac{Trust_{i} - Trust_{min}}{Trust_{max}}$ where $i \in [1,...,n]$
+
+**Calculating Ranking**
+
+$Ranking$ = $[r_{1},r_{2},...,r_{n}]$
+
+$$
+\begin{alignedat}{1}
+    R =
+    \begin{bmatrix}
+        r_{1} \\
+        r_{2} \\
+        \vdots \\
+        r_{n-1} \\
+        r_{n}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        v^{\prime}_1 & \sqrt{t^{\prime}_1} \\
+        v^{\prime}_2 & \sqrt{t^{\prime}_2} \\
+        \vdots & \vdots \\
+        v^{\prime}_{n-1} & \sqrt{t^{\prime}_{n-i}} \\
+        v^{\prime}_n & \sqrt{t^{\prime}_n}
+    \end{bmatrix}
+    \begin{bmatrix}
+        \alpha & (1-\alpha) \\
+    \end{bmatrix} \;\;\;\;\;\;\;\;\;\;\;\;\;\;\\ \;
+\end{alignedat}
+$$
 
 Finally, to select the masternode to become validator, we multiply the ranking with random function
-
-```python
-math.sqrt(nodes[i][RANKING]) * math.pow(arr_random[i],4)
-```
 
 # Application
 
