@@ -1,20 +1,28 @@
-# Abstract
+# Draft
 
+
+
+# Abstract
 We introduce a new blockchain architecture and concept that is practical in terms of operability, scalable and economically sensible. Novalex blockchain is a public EVM-compatible blockchain that focuses on maintaining an instantaneous confirmation time, high level of security and a sensible low-fee, high volume compensation scheme. We use a ranking proof of stake voting consensus for increased security and fast confirmation. Our ranking-bias voting mechanism provides a fair compensation scheme for our masternodes, thus encouraging each masternode to improve on its stake and performance for maximum compensation. This benefits the entire ecosystem through healthy competition and high masternode engagement. Using our robust ecosystem, we eventually aim to built practical decentralised applications that will generate a revenue stream for our coin holders providing immediate dividends unlike an Equity underlying which normally pay quarterly dividends. We do so in an environment where decision making is decentralised unlike the current norm where power in concentrated in a single agency. This will greatly help the blockchain ecosystem by conceptually bringing it closer to mainstream business and finance, facilitating the evolution to create a decentralised economic hinterland where power is shared rather than concentrated in a single agency. Although it is argued the main ethos for decentralization is non profit, it is a policy that is difficult to maintain and justify. Hence we offer a model of sustainable profitability where cost is low for consumers and profit is sustainable for our coinholders and masternodes. In this era of increasing populism, we build our ecosystem based on a philosophy of responsible capitalism.
 
 # Introduction
 
-The cryptocurrency market has seen its share of bust and boom. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. To address these issues, Novalex aims to create a new age blockchain architecture that is pushing the boundaries of decentralisation. Our focus is not only on building the underlying blockchain technology. We also leverage the technology to build useful DApps that transcends the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like an conventional Equity underlying albeit in a different line. Our token will then used as a medium for reward, payment or transactions [link][1]
+### BlockChain and Cryptocurrency
+There is some confusion outside the walls of the industry as to what is the difference between blockchain and cryptocurrency are. In very simple terms, blockchain is the distributed ledger technology where information is bundled into blocks. These blocks are then verified in a trustless peer-to-peer network where the rules of engagement are predetermined through a consensus algorithm agreed in advance. Since the blockchain technology that administered Bitcoin [link][3], blockchain technology have evolved steadily irregardless of the health of the cryptocurrency market as an asset class. Since Bitcoin in 2008, we have seen altcoins listed using different variations of the proof-of-work concept. However since 2012, proof of stake emerged as competitor concept where transactions times were lowered and the scalability problem was under control dues to its low energy consumption. Since then more advanced variations of the PoS technology have been created and the possibility of creating useful and sustainable applicatio   n are now a practical possibility.
+
+While blockchain represents the technology, Cryptocurrency represents a medium for the transfer of value and also a measure of remumeration for the 'work' done within each system and blockchain. The cryptocurrency market has seen its share of bust and boom. Since its advent, the cryptocurrency market have gone through 3 main cycles of peak and trough. In the most current rally, the total market capitalization of all cryptocurrencies was circulating near USD\$1 trillion. Since then, it has been fallen to around USD\$200 billion and the market have been stagnating around that level. Cryptocurrencries are known to be extremely volatile and in all 3 troughs, prices have crashed more than 80% from it peak in a relatively short amount of time. The entire ecosystem have been littered with hacks and fraud giving it an undesired reputation. Critics have long profess that cryptocurrencies have no practical use, do not generate revenue and thus possess no intrinsic value. However as the crypotocurrency market has grown in size and Government around the world To address these issues, Novalex aims to create a new age blockchain architecture that is pushing the boundaries of decentralisation. Our focus is not only on building the underlying blockchain technology. We also leverage the technology to build useful DApps that transcends the journey towards economic decentralisation where top and profitable business applications are built. We aim to build a blockchain that generates a revenue stream just like a conventional Equity underlying albeit in a different line. Our token will then used as a medium for reward, payment or transactions [link][1]
 
 ### A World of Centralised Institutions
 
-The argument with respect to the benefits and detriments of centralisation vs decentralisation has been evolving for centuries. The studies of Social and Behavioral Sciences with respect to these structures of society is well studied and documented. Since the Neolithic Age, human or its ancestors have began a period of centralisation. Communities became cities and cities became empires. As people came together it became more difficult to maintain trust and harmony, leading to a collapse of society, hence arises a need to form central institutions of governance and gatekeepers.
+The argument with respect to the benefits and detriments of centralisation vs decentralisation has been evolving for centuries. The studies of Social and Behavioral Sciences with respect to these structures of society is well studied and documented. Since the Neolithic Age, human or its ancestors have began a period of centralisation. Communities became cities and cities became empires. As people came together it became more difficult to maintain trust and harmony, leading to a collapse of society, hence arises a need to form central institutions of governance and gatekeepers. Since the last end of the last century, in the era of gobalisation, the speed and scale of centralisation have gathered pace and it has resulted in great powers being wielded by few individuals both socially and economically. This was regarded as an improvement in the spirit of humanity as the world got richer and millions were lifted of poverty. However one collateral effect of this global phenomenon is the increased divide between the rich and the poor. This has resulted in a wave of political populism and see countries become increasingly protectionist. As such, we may begin to see a world that is beginning the reverse the trend of centralisation and globalisation.  
 
 ### A Decentralised Future
-
+                    
 Bitcoin was created in 2008 when Satoshi Nakamoto With the Advent of blockchain technology
 
-Scalability
+### Evolution of Blockchain Architecture
+
+### Scalability
 
 Today, Ethereum processes roughly 500,000 transactions per day, and at full capacity, can process about 13 transactions per second. While these transactions don’t require a third party to validate them, centralized counterparts can process transactions much more efficiently. For example, Visa’s payment network processes 150 million transactions per day — orders of magnitude more than any decentralized blockchain network has been able to achieve. The main reason behind Ethereum’s scalability bottleneck is that each node in the network has to process each transaction, so to increase the performance, we need to limit the number of nodes that processing transactions.
 
@@ -25,7 +33,7 @@ Today, Ethereum processes roughly 500,000 transactions per day, and at full capa
 As mentioned above, scalability issue is really a big deal in the blockchain technology area.
 Novalex is the project that applying the off-chain solution by creating a private blockchain with a fixed number of masternodes that performs faster and better especially for decentralized exchange applications.
 
-Security Vs Throughput
+### Security Vs Throughput
 
 - contracts have bugs => should not build a big application entirely in smart contracts
 - pseudo random number has bugs, based on block variables, block hash,
@@ -37,7 +45,7 @@ Security Vs Throughput
 
 ![architecture](./assets/TPS.png)
 
-# Architecture
+# Novalex Architecture
 
 The Novalex blockchain architecture consist of several modules in our core layer including our masternode configuration, consensus mechanism, token account management. For simplicity, solidity is chosen as a preferred language for smart contracts due to its overiding popularity, however we also provide support for python, Javascript and will aim to also support C++ and powercell in the near future. Novalex uses a ranking proof of stake voting mechanism to ensure a high level of security and fair compensation scheme.
 
@@ -471,4 +479,11 @@ For the futures, decentralized exchange can apply for digital assets, stock..
 [7]: [KyberNetwork: A trustless decentralized exchange and payment service](https://whitepaper.io/document/43/kyber-network-whitepaper)  
 [8]: [The Stellar Consensus Protocol:A Federated Model for Internet-level Consensus](https://www.stellar.org/papers/stellar-consensus-protocol.pdf)  
 [9]: [ETHEREUM: A SECURE DECENTRALISED GENERALISED TRANSACTION LEDGER EIP-150 REVISION](https://gavwood.com/paper.pdf)  
-[10]:[Scaling Nakamoto Consensus to Thousands of Tranactions per Second](https://arxiv.org/pdf/1805.03870.pdf)
+[10]:[Scaling Nakamoto Consensus to Thousands of Tranactions per Second](https://arxiv.org/pdf/1805.03870.pdf)  
+[11]:[A Secure Economic Framework for Peer-to-Peer Resource Sharing](https://cs.baylor.edu/~donahoo/classes/5321/papers/VCS03.pdf)  
+[12]:[Formalizing and Securing Relationships on Public Networks](https://journals.uic.edu/ojs/index.php/fm/article/view/548/469)  
+[13]:[Pricing via Processing or Combatting Junk Mail](http://www.wisdom.weizmann.ac.il/~naor/PAPERS/pvp.pdf)  
+[14]:[Technical Basis of Digital Currencies](https://www.coderblog.de/wp-content/uploads/technical-basis-of-digital-currencies.pdf)  
+[15]:[Himalayan Capital Exchange, ICO White Paper](http://wolfgangflatow.com/himalaya/mobile/index.html)
+[16]:[Hashcash - A Denial of Service Counter-Measure](http://www.hashcash.org/hashcash.pdf)
+[17]:[Pricing vis Processing or Combatting Junk Mail](https://link.springer.com/content/pdf/10.1007%2F3-540-48071-4_10.pdf)
