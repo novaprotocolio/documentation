@@ -484,6 +484,6 @@ For the futures, decentralized exchange can apply for digital assets, stock..
 [12]:[Formalizing and Securing Relationships on Public Networks](https://journals.uic.edu/ojs/index.php/fm/article/view/548/469)  
 [13]:[Pricing via Processing or Combatting Junk Mail](http://www.wisdom.weizmann.ac.il/~naor/PAPERS/pvp.pdf)  
 [14]:[Technical Basis of Digital Currencies](https://www.coderblog.de/wp-content/uploads/technical-basis-of-digital-currencies.pdf)  
-[15]:[Himalayan Capital Exchange, ICO White Paper](http://wolfgangflatow.com/himalaya/mobile/index.html)
-[16]:[Hashcash - A Denial of Service Counter-Measure](http://www.hashcash.org/hashcash.pdf)
+[15]:[Himalayan Capital Exchange, ICO White Paper](http://wolfgangflatow.com/himalaya/mobile/index.html)  
+[16]:[Hashcash - A Denial of Service Counter-Measure](http://www.hashcash.org/hashcash.pdf)  
 [17]:[Pricing vis Processing or Combatting Junk Mail](https://link.springer.com/content/pdf/10.1007%2F3-540-48071-4_10.pdf)
